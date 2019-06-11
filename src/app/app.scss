@@ -14,3 +14,52 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+//
+.text-primary {
+  color: color($colors, primary);
+}
+
+.text-secondary {
+  color: color($colors, secondary);
+}
+
+.text-green {
+  color: #68C91F;
+}
+
+.text-pink {
+  color: #FE8985;
+}
+
+.text-gold {
+  color: #7A7B7D;
+}
+
+.text-yellow {
+  color: #FDD835;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.error-border {
+  .label {
+    color: color($colors, danger);
+  }
+}
+
+.form-error {
+  background: transparent;
+  min-height: 0rem;
+  padding: 0px;
+  max-height: 3rem;
+  font-size: 1rem;
+  .item-inner {
+    border-bottom: 0px !important;
+  }
+  p {
+    color: color($colors, danger)
+  }
+}

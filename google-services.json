@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "297384737282",
+    "firebase_url": "https://plan-your-days.firebaseio.com",
+    "project_id": "plan-your-days",
+    "storage_bucket": "plan-your-days.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297384737282:android:7313f9511b80077d",
+        "android_client_info": {
+          "package_name": "id.pyd.planyourdays"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297384737282-itnn0ekjjr5lovvpvki2itik8kdl1vts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEiHKNOKCtVWuW0dFf5XduBI514c_qt58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297384737282-itnn0ekjjr5lovvpvki2itik8kdl1vts.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "297384737282-b6m36i7r55igjolftov6mdrdul64hhiu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "id.pyd.planyourdays"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

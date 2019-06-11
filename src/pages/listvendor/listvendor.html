@@ -1,0 +1,111 @@
+<!--
+  Generated template for the ListvendorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Catering</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="cards-bg">
+
+  <ion-card class="adv-map" *ngFor="let vendor of vendors" >
+    <div style="position: relative">
+      <img (click)="takeMeBack()" [src]="vendor.img">
+      <ion-fab right top>
+        <button ion-fab class="fab-map pop-in" (click)="seeInMap(vendor)">
+          <ion-icon name='pin'></ion-icon>
+        </button>
+      </ion-fab>
+    </div>
+    <ion-item (click)="takeMeBack()" >
+      <ion-icon color="subtle" large item-start name='restaurant'></ion-icon>
+      <h2 >{{vendor.name}}</h2>
+      <p>{{vendor.alamat}}</p>
+    </ion-item>
+    <ion-item actions>
+      <span ion-text item-start color="subtle">Price :</span>
+      <span ion-text item-start color="primary" class="item-bold">IDR {{vendor.harga}}</span>
+      <button ion-button color="primary" outline item-end >
+        <ion-icon name='heart'></ion-icon>
+      </button>
+    </ion-item>
+  </ion-card>
+
+  <!-- <ion-card class="adv-map">
+    <div style="position: relative">
+      <img (click)="takeMeBack()" src="https://www.kenricks.com/wp-content/uploads/2017/08/cactering-packages-resized.jpg">
+      <ion-fab right top>
+        <button ion-fab class="fab-map">
+          <ion-icon name='pin'></ion-icon>
+        </button>
+      </ion-fab>
+    </div>
+    <ion-item (click)="takeMeBack()" >
+      <ion-icon color="subtle" large item-start name='restaurant'></ion-icon>
+      <h2 >Anayah Makan</h2>
+      <p>Kebon Jeruk, Jakarta Barat</p>
+    </ion-item>
+    <ion-item actions>
+      <span ion-text item-start color="subtle">Price :</span>
+      <span ion-text item-start color="primary" class="item-bold">IDR 340k</span>
+      <button ion-button color="primary" outline item-end >
+        <ion-icon name='heart'></ion-icon>
+      </button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="adv-map">
+    <div style="position: relative">
+      <img src="https://www.kenricks.com/wp-content/uploads/2017/08/cactering-packages-resized.jpg">
+      <ion-fab right top>
+        <button ion-fab class="fab-map">
+          <ion-icon name='pin'></ion-icon>
+        </button>
+      </ion-fab>
+    </div>
+    <ion-item>
+      <ion-icon color="subtle" large item-start name='restaurant'></ion-icon>
+      <h2>Mamakan Catering</h2>
+      <p>Semanan, Kalideres, Jakarta Barat</p>
+    </ion-item>
+    <ion-item actions>
+      <span ion-text item-start color="subtle">Price :</span>
+      <span ion-text item-start color="primary" class="item-bold">IDR 500k</span>
+      <button ion-button color="primary" clear item-end icon-start>
+        <ion-icon name='star'></ion-icon>
+        Start
+      </button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="adv-map">
+    <div style="position: relative">
+      <img src="https://www.kenricks.com/wp-content/uploads/2017/08/cactering-packages-resized.jpg">
+      <ion-fab right top>
+        <button ion-fab class="fab-map">
+          <ion-icon name='pin'></ion-icon>
+        </button>
+      </ion-fab>
+    </div>
+    <ion-item >
+      <ion-icon color="subtle" large item-start name='restaurant'></ion-icon>
+      <h2>Mamakan Catering</h2>
+      <p>Semanan, Kalideres, Jakarta Barat</p>
+    </ion-item>
+    <ion-item actions>
+      <span ion-text item-start color="subtle">Price :</span>
+      <span ion-text item-start color="primary" class="item-bold">IDR 500k</span>
+      <button ion-button color="primary" clear item-end icon-start>
+        <ion-icon name='star'></ion-icon>
+        Start
+      </button>
+    </ion-item>
+  </ion-card> -->
+
+</ion-content>

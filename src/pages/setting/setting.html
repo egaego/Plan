@@ -1,0 +1,87 @@
+<!--
+  Generated template for the SettingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="no-shadow">
+
+  <ion-navbar class="no-border">
+    <ion-title>
+      <ion-icon name="cog" ></ion-icon>
+      <span >Settings</span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content >
+  <ion-card class="tcard"  >
+  <ion-card-header class="fontset" >
+    Account Settings
+  </ion-card-header>
+
+  <ion-list  >
+    <button class="fontset" ion-item>
+      <ion-icon name="contact-outline" item-start small></ion-icon>
+      Edit Profile
+    </button>
+
+    <button class="fontset" ion-item>
+      <ion-icon name="medical-outline" item-start small></ion-icon>
+      Ubah Password
+    </button>
+
+    <button class="fontset" ion-item>
+      <ion-icon name="person-add-outline" item-start small></ion-icon>
+      Detail Pasangan
+    </button>
+
+    <ion-item no-lines class="fontset" >
+      <ion-icon name="notifications-outline" item-start small ></ion-icon>
+      <ion-label >Notifications</ion-label>
+      <ion-toggle value="foo" checked="true"></ion-toggle>
+    </ion-item>
+
+
+  </ion-list>
+</ion-card>
+
+<ion-card class="tcard" >
+
+<ion-list>
+  <button class="fontset" ion-item>
+    <ion-icon name="flag-outline" item-start small></ion-icon>
+    Tentang Kami
+  </button>
+
+  <button class="fontset" ion-item>
+    <ion-icon name="bookmark-outline" item-start small></ion-icon>
+    Kebijakan privasi
+  </button>
+
+  <button class="fontset" ion-item>
+    <ion-icon name="alert-outline" item-start small ></ion-icon>
+    Laporkan Masalah
+  </button>
+
+  <button class="fontset" ion-item>
+    <ion-icon name="star-outline" item-start small></ion-icon>
+    Berikan Bintang di Apps Store
+  </button>
+
+<!--sign out button-->
+  <ion-item no-lines tappable (click)="logout()" >
+    <ion-icon name="log-out" item-start small></ion-icon>
+    <ion-label class="fontset" >Logout</ion-label>
+  </ion-item>
+
+
+</ion-list>
+</ion-card>
+
+<div text-center >
+  <ion-icon name="exi-outline" item-start small></ion-icon>
+  <span ion-text color="primary" >Versi 0.0.1</span>
+  </div>
+</ion-content>

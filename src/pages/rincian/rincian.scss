@@ -1,0 +1,46 @@
+page-rincian {
+
+  //.bg{
+  //background-image: linear-gradient(90deg, #FFEDE7, #FFF7F5);
+  //}
+  .crincian{
+  border-radius: 10px;
+  box-shadow: none !important;
+  }
+
+ .trincian{
+   height: 80px;
+   background-image: linear-gradient(90deg, #FE8985, #FFBEAB);
+   color: #fff;
+   font-weight: bold;
+   line-height: 1.5;
+ }
+
+ .tkonten{
+   color:#FE8985;
+   background-color: #fff;
+   line-height: 1.5;
+ }
+ .tsub{
+   font-weight: normal;
+   color: #fff;
+ }
+
+ .ttotal{
+   height: 60px;
+   background-image: linear-gradient(90deg, #FE8985, #FFBEAB);
+   color: #fff;
+   font-weight: bold;
+   text-decoration: none;
+   margin: 0;
+ }
+
+ .tprint{
+ color: #000;
+ right: 20%;
+ font-size: 90%;
+ position: relative;
+
+ }
+
+}

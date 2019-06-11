@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
+<widget id="id.pyd.planyourdays" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>PYD</name>
+    <description>Plan Your Days </description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
@@ -13,18 +13,22 @@
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-targetSdkVersion" value="25" />
     <preference name="BackupWebStorage" value="none" />
+    <preference name="StatusBarBackgroundColor" value="#F6F4E8" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
-
-    <!--
-      Change these to configure how the splashscreen displays and fades in/out.
-      More info here: https://github.com/apache/cordova-plugin-splashscreen
-    -->
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="orientation" value="portrait" />
     <platform name="android">
+        <hook src="hooks/copy_android_notification_icons.js" type="after_prepare" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -44,6 +48,11 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <resource-file src="resources/android/icon/drawable-mdpi-icon.png" target="res/drawable-mdpi/ic_stat_onesignal_default.png" />
+        <resource-file src="resources/android/icon/drawable-hdpi-icon.png" target="res/drawable-hdpi/ic_stat_onesignal_default.png" />
+        <resource-file src="resources/android/icon/drawable-xhdpi-icon.png" target="res/drawable-xhdpi/ic_stat_onesignal_default.png" />
+        <resource-file src="resources/android/icon/drawable-xxhdpi-icon.png" target="res/drawable-xxhdpi/ic_stat_onesignal_default.png" />
+        <resource-file src="resources/android/icon/drawable-xxxhdpi-icon.png" target="res/drawable-xxxhdpi/ic_stat_onesignal_default.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -80,10 +89,61 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
+        <custom-config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
+            <string>need camera access to take pictures</string>
+        </custom-config-file>
+        <custom-config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+            <string>need photo library access to get pictures from there</string>
+        </custom-config-file>
+        <resource-file src="GoogleService-Info.plist" target="resources/GoogleService-Info.plist" />
     </platform>
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
-    <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
-    <plugin name="cordova-plugin-device" spec="1.1.4" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^1.1.11" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://10.0.0.171:8100" />
+    <allow-navigation href="http://192.168.43.29:8100" />
+    <allow-navigation href="http://10.0.0.64:8100" />
+    <allow-navigation href="http://10.0.0.64:8101" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-device" spec="^2.0.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^1.2.1" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-plugin-advanced-http" spec="^1.11.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
+    <plugin name="ionic-plugin-deeplinks" spec="^1.0.15">
+        <variable name="URL_SCHEME" value="agendanikah" />
+        <variable name="DEEPLINK_SCHEME" value="https" />
+        <variable name="DEEPLINK_HOST" value="agendanikah.com" />
+        <variable name="ANDROID_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_2_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_3_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_4_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_5_PATH_PREFIX" value="/" />
+        <variable name="DEEPLINK_2_SCHEME" value=" " />
+        <variable name="DEEPLINK_2_HOST" value=" " />
+        <variable name="DEEPLINK_3_SCHEME" value=" " />
+        <variable name="DEEPLINK_3_HOST" value=" " />
+        <variable name="DEEPLINK_4_SCHEME" value=" " />
+        <variable name="DEEPLINK_4_HOST" value=" " />
+        <variable name="DEEPLINK_5_SCHEME" value=" " />
+        <variable name="DEEPLINK_5_HOST" value=" " />
+    </plugin>
+    <plugin name="mx.ferreyra.callnumber" spec="0.0.2" />
+    <plugin name="com-sarriaroman-photoviewer" spec="^1.1.16" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
+    <plugin name="com-badrit-base64" spec="^0.2.0" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
+    <plugin name="cordova-plugin-ios-camera-permissions" spec="^1.2.0">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="This app needs camera access for user photo profile and wedding events" />
+        <variable name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="This app needs write-access to photo library for user photo profile and wedding events" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="This app needs read to photo library for user photo profile and wedding events" />
+    </plugin>
+    <allow-navigation href="http://10.0.0.64:8100" />
+    <allow-navigation href="http://10.0.0.64:8101" />
+    <allow-navigation href="http://10.0.0.171:8101" />
+    <plugin name="call-number" spec="^1.0.1" />
+    <engine name="android" spec="7.1.4" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

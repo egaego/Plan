@@ -1,6 +1,8 @@
 {
   "name": "PYD",
-  "app_id": "016e82b8",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
-  "integrations": {}
+  "id": "016e82b8"
 }

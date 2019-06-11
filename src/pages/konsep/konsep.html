@@ -1,0 +1,44 @@
+<!--
+  Generated template for the KonsepPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>konsep</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="grid-basic-page">
+
+<ion-grid>
+    <ion-row>
+      <ion-col class="tgrid">
+        <ion-card [style.backgroundImage]="'url(https://www.theweddingring.ca/wp-content/uploads/Joie-de-Vivre-1-1.jpg)'">
+          <p class="card-title" >Decoration</p>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card [style.backgroundImage]="'url(https://allurehairsalon.com.au/wp-content/uploads/hair-makeup-wedding.jpg)'">
+        <p class="card-title" >Make Up</p>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="tgrid" >
+        <ion-card [style.backgroundImage]="'url(https://cdn.sandals.com/sandals/v12/images/weddings/weddings-honeymoons/ocean-couple-wedding.jpg)'">
+          <p class="card-title" >Photograpy</p>
+        </ion-card>
+      </ion-col>
+      <ion-col (click)="takeMeBack()" >
+        <ion-card [style.backgroundImage]="'url(https://cdn.sandals.com/sandals/v12/images/weddings/weddings-honeymoons/ocean-couple-wedding.jpg)'">
+        <ion-icon class="card-icon" name="add-circle-outline"></ion-icon>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
