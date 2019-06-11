@@ -28,3 +28,9 @@ Check java version list
 ```
 /usr/libexec/java_home -V
 ```
+
+
+Running android platform
+```
+ionic cordova emulate android -lcs
+```
