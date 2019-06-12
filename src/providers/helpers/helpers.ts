@@ -16,7 +16,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 @Injectable()
 export class HelpersProvider {
   
-  TEST_MODE: boolean = true;
+  TEST_MODE: boolean = false;
   SANDBOX_BASE_URL: string = 'http://192.168.43.199:8080/plan-your-days/public/';
   PRODUCTION_BASE_URL: string = 'http://planyourdays.id/public/';
 
