@@ -4,7 +4,7 @@ import { Device } from '@ionic-native/device';
 import { File } from '@ionic-native/file';
 import { DatePicker } from '@ionic-native/date-picker';
 import { CallNumber } from '@ionic-native/call-number';
-// import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /*
@@ -18,7 +18,7 @@ export class HelpersProvider {
   
   TEST_MODE: boolean = false;
   SANDBOX_BASE_URL: string = 'http://192.168.43.199:8080/plan-your-days/public/';
-  PRODUCTION_BASE_URL: string = 'http://planyourdays.id/public/';
+  PRODUCTION_BASE_URL: string = 'http://planyourdays.id/';
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -27,7 +27,7 @@ export class HelpersProvider {
     public device: Device,
     public datePicker: DatePicker,
     public callNumber: CallNumber,
-    // public photoViewer: PhotoViewer,
+    public photoViewer: PhotoViewer,
     public inAppBrowser: InAppBrowser
     ) {
     

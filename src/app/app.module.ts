@@ -97,7 +97,8 @@ import { OneSignal } from '@ionic-native/onesignal';
     CallNumber,
     InAppBrowser,
     Base64,
-    OneSignal
+    OneSignal,
+    PhotoViewer
   ]
 })
 export class AppModule {}

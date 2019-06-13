@@ -78,7 +78,7 @@ export class ProfilPage {
   }
 
   getUser() {
-    this.apiProvider.get('user/show/' + localStorage.getItem('user_id'), {}, {'Content-Type': 'application/json', "Authorization": "Bearer " + this.token})
+    this.apiProvider.get('user/show/' + localStorage.getItem('user_id'), {}, {'Content-Type': 'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
       .then((data) => {
         console.log(data);
         let result = JSON.parse(data.data);
@@ -125,8 +125,8 @@ export class ProfilPage {
       let params = {
         "photo_base64": 'data:image/jpeg;base64,' + imageData
       }
-      
-      this.apiProvider.post("user/upload-photo/" + localStorage.getItem("user_id"), params, {"Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("token")})
+
+      this.apiProvider.post("user/upload-photo/" + localStorage.getItem("user_id"), params, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
           
           let result = JSON.parse(data.data);
@@ -154,40 +154,6 @@ export class ProfilPage {
         console.log(err);
     });
   }
-  
-  getCountdown() {
-    if (!this.wedding_day) {
-      return;
-    }
-    
-    let target_date = null;
-    
-    if(this.platform.is('ios')) {
-      let t = this.wedding_day.split(/[- :]/);
-      // Apply each element to the Date function
-      target_date = new Date(t[0], t[1]-1, t[2], 0, 0, 0).getTime();
-    } else {
-      target_date = Date.parse(this.wedding_day + ' 00:00:00'); // set the countdown date
-    }
-    
-    // find the amount of "seconds" between now and target
-    let current_date = new Date().getTime();
-    
-    let seconds_left = (target_date - current_date) / 1000;
-    
-    if (current_date > target_date) {
-      seconds_left = 0;
-    }
-    
-    this.days = this.pad(Math.floor(seconds_left / 86400) );
-    seconds_left = seconds_left % 86400;
-
-    this.hours = this.pad(Math.floor(seconds_left / 3600) );
-    seconds_left = seconds_left % 3600;
-
-    this.minutes = this.pad(Math.floor(seconds_left / 60) );
-    this.seconds = this.pad(Math.floor( seconds_left % 60 ) );
-  }
 
   pad(n) {
     return (n < 10 ? '0' : '') + n;
@@ -195,6 +161,10 @@ export class ProfilPage {
   
   goToSetting() {
     this.navCtrl.push("SettingPage");
+  }
+
+  goToInspiration() {
+    this.navCtrl.push("InspirationPage"); 
   }
   
   doUploadPhoto() {
@@ -246,7 +216,7 @@ export class ProfilPage {
   }
   
   deletePhoto() {
-    this.apiProvider.delete("user/delete-photo/" + localStorage.getItem("user_id"), {}, {"Content-Type": "application/json", "Authorization": "Bearer " + localStorage.getItem("token")})
+    this.apiProvider.delete("user/delete-photo/" + localStorage.getItem("user_id"), {}, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
           
           let result = JSON.parse(data.data);

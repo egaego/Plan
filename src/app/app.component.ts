@@ -177,7 +177,7 @@ export class MyApp {
   forceLogout(message: string) {
     this.helpers.toastPresent(message);
     this.helpers.clearLoggedIn();
-    this.app.getRootNav().setRoot("TabsPage");
+    this.app.getRootNav().setRoot("LoginPage");
   }
   
   logout(token: any) {

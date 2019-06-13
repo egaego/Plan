@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { HelpersProvider } from '../../providers/helpers/helpers';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the GalleryPage page.
@@ -14,43 +16,108 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'gallery.html',
 })
 export class GalleryPage {
-  images: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  galleries: any = [];
+  fileThumbUrl: string;
+  fileUrl: string;
+  exceptionFileThumbUrl: string;
+  loading: any;
 
-    this.images = [
-      // {
-      //   "name": "apa",
-      //   "img": 'https://img1.southernliving.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2017/06/main/autumn-charleston-wedding-jophoto-kn5a9998.jpg?itok=qx_rETsz',
-      // },
-      // {
-      //   "name": "apa name",
-      //   "img": 'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/04/are-stylized-shoots-hurting-the-wedding-industry.jpg',
-      // },
-      // {
-      //   "name": "apa name",
-      //   "img": 'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/04/are-stylized-shoots-hurting-the-wedding-industry.jpg',
-      // },
-      // {
-      //   "name": "apa name",
-      //   "img": 'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/04/are-stylized-shoots-hurting-the-wedding-industry.jpg',
-      // }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public helpersProvider: HelpersProvider,
+    public events: Events,
+    public apiProvider: ApiProvider
+  ) {
 
-      'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/04/are-stylized-shoots-hurting-the-wedding-industry.jpg',
-      'http://brideandbreakfast.ph/wp-content/uploads/2015/01/Jim-and-Saab-Baguio-Wedding-002.jpg',
-      'https://media.vanityfair.com/photos/5bdc59f97d738b4e26033e1a/master/w_768,c_limit/gwyneth-paltrow-brad-falchuk-wedding.jpg',
-      'http://lindgrensbridal.com/wp-content/uploads/2018/02/d2405.jpg',
-      'https://static1.squarespace.com/static/596bbf0ee3df283933d9dcb8/t/5b747a7c40ec9a6f4211d8eb/1534360198451/essense+of+australia+wedding+dress+in+destin+florida.jpg',
-      'http://gio6v3sgme0lorck1bp74b12-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/157_CP_GALLERY_TERIV.CO_.UK_-1020x679.jpg',
-      'https://static1.squarespace.com/static/57310f632b8dded92ff49ec5/t/5b0f6f80758d464ac1ba42c0/1551064116547/MATT+%26+MEL+WEDDING-510.jpg?format=1500w',
-      'https://amp.thisisinsider.com/images/5b4332bec8d6ed1c008b4574-750-563.jpg',
-      'https://i.pinimg.com/originals/31/5b/89/315b896025e1da6a9fbaf95c836f1b4c.jpg',
-    ];
+    this.fileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/thumbs/';
+    this.fileUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/';
+    this.exceptionFileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/thumbs/default.png';
 
+    this.getGalleries();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GalleryPage');
+  }
+
+  showPicture(gallery: any) {
+    this.helpersProvider.photoViewer.show(gallery.file != null ? this.fileUrl + gallery.file : this.exceptionFileThumbUrl, gallery.name);
+  }
+
+  favorite(gallery: any) {
+    console.log(gallery.id);
+
+    this.loading = this.helpersProvider.loadingPresent("Please Wait ...");
+
+    let params = {
+    };
+
+    if (gallery.is_favorite == 0) {
+      this.apiProvider.post('gallery/store/' + gallery.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
+        .then((data) => {
+            
+          let result = JSON.parse(data.data);
+          
+          this.loading.dismiss();
+          this.helpersProvider.toastPresent(result.message);
+        })
+        .catch((error) => {
+          this.loading.dismiss();
+          console.log(error);
+          let result = JSON.parse(error.error);
+          this.helpersProvider.toastPresent(result.message);
+        });
+    } else {
+      this.apiProvider.delete('gallery/delete/' + gallery.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
+        .then((data) => {
+          
+          let result = JSON.parse(data.data);
+          
+          this.loading.dismiss();
+          this.helpersProvider.toastPresent(result.message);
+        })
+        .catch((error) => {
+          this.loading.dismiss();
+          console.log(error);
+          let result = JSON.parse(error.error);
+          this.helpersProvider.toastPresent(result.message);
+        });
+    }
+      
+    for ( var i=0 ; i < this.galleries.length; i++) {
+      if (this.galleries[i].id == gallery.id) {
+        this.galleries[i].is_favorite = !gallery.is_favorite;
+      }
+    }
+  }
+
+  getGalleries() {
+    this.apiProvider.get('gallery?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
+      .then((data) => {
+        let result = JSON.parse(data.data);
+        console.log(result);
+        for(var o=0; o<result.data.length; o++) {
+          console.log(result.data[o].gallery);
+        }
+        
+        this.galleries = result.data;
+
+      })
+      .catch((error) => {
+        let result = JSON.parse(error.error);
+        this.helpersProvider.toastPresent(result.message);
+        console.log(error);
+      });
+  }
+
+  doRefresh(e) {
+    this.getGalleries();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      e.complete();
+    }, 2000);
   }
 
 }

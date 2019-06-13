@@ -20,7 +20,7 @@ export class KonsepPage {
   }
 
   takeMeBack() {
-    this.navCtrl.push(FormkonsepPage);
+    this.navCtrl.push("FormkonsepPage");
   }
 
   ionViewDidLoad() {

@@ -7,21 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Gallery</ion-title>
+    <ion-title>Inspirations</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
   <div class="pins">
     <div class="pin" ion-card icon-start *ngFor="let gallery of galleries">
       <img [src]="gallery.file != null ? fileThumbUrl + gallery.file : exceptionFileThumbUrl" imageViewer (click)="showPicture(gallery)"/>
-      <i (click)="favorite(gallery)"><ion-icon name="heart" [color]="gallery.is_favorite ? 'danger': ''"></ion-icon></i>
+      <i (click)="deleteFavorite(gallery)"><ion-icon name="heart" color="danger"></ion-icon></i>
     </div>
   </div>
-
 </ion-content>
