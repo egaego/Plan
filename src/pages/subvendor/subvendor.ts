@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {ListvendorPage} from "../listvendor/listvendor";
+import { HelpersProvider } from '../../providers/helpers/helpers';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the SubvendorPage page.
@@ -17,40 +19,38 @@ import {ListvendorPage} from "../listvendor/listvendor";
 export class SubvendorPage {
 
   vendors : any = [];
+  defaultVendors : any = [];
+  fileThumbUrl: string;
+  fileUrl: string;
+  exceptionFileThumbUrl: string;
+  loading: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public nav: NavController,) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public nav: NavController,
+    public helpersProvider: HelpersProvider,
+    public events: Events,
+    public apiProvider: ApiProvider
+  ) {
+    this.fileUrl = this.helpersProvider.getBaseUrl() + 'files/concepts/';
+    this.exceptionFileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/concepts/thumbs/default.png';
 
-this.initializeVendors();
+    this.getConcepts();
 
   }
-  initializeVendors(){
-  this.vendors = [
-    {
-      "icon": "restaurant",
-      "name": "Catering",
-      "img": 'https://www.kenricks.com/wp-content/uploads/2017/08/cactering-packages-resized.jpg',
-    },
-    {
-      "icon": "camera",
-      "name": "Photography",
-      "img": 'http://www.weddingmagazine.us/wp-content/uploads/2018/09/Catering-It-Is-Time-to-Get-Ready-for-Wedding-Season.jpg',
-    },
-    {
-      "icon": "bowtie",
-      "name": "Hair & Make Up",
-      "img": 'https://allurehairsalon.com.au/wp-content/uploads/hair-makeup-wedding.jpg',
-    },
-    {
-      "icon": "hammer",
-      "name": "Decoration",
-      "img": 'https://cdn0.weddingwire.ca/img_r_10838/8/3/8/0/t30_50_10838.jpg',
-    }
-  ];
+
+  detail(item: any) {
+    this.navCtrl.push("ListvendorPage", {item: item});
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SubvendorPage');
   }
 
   getItems(ev) {
-    // Reset items back to all of the items
-    this.initializeVendors();
+
+    this.vendors = this.defaultVendors;
 
     // set val to the value of the ev target
     var val = ev.target.value;
@@ -63,12 +63,36 @@ this.initializeVendors();
     }
   }
 
-  takeMeBack() {
-    this.navCtrl.push("ListvendorPage");
+  onCancel(ev) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SubvendorPage');
+  getConcepts() {
+    this.apiProvider.get('vendor/concept?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
+      .then((data) => {
+        console.log(data);
+        let result = JSON.parse(data.data);
+        
+        this.vendors = result.data;
+        this.defaultVendors = result.data;
+
+      })
+      .catch((error) => {
+        let result = JSON.parse(error.error);
+        this.helpersProvider.toastPresent(result.message);
+        if (result.status == '401') {
+          this.events.publish("auth:forceLogout", result.message);
+        }
+        console.log(error);
+      });
+  }
+
+  doRefresh(e) {
+    this.getConcepts();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      e.complete();
+    }, 2000);
   }
 
 }

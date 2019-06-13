@@ -1,0 +1,42 @@
+<!--
+  Generated template for the ListvendorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+      <ion-title>My Favorite Vendors</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content class="cards-bg">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-card class="adv-map" *ngFor="let vendor of galleries" >
+      <div style="position: relative">
+        <img (click)="detail(vendor)" [src]="vendor.file != null ? fileThumbUrl + vendor.file : exceptionFileThumbUrl" imageViewer>
+        <ion-fab right top>
+          <button ion-fab class="fab-map pop-in" (click)="seeInMap(vendor)">
+            <ion-icon name='pin'></ion-icon>
+          </button>
+        </ion-fab>
+      </div>
+      <ion-item (click)="detail(vendor)" >
+        <h2 >{{vendor.name}}</h2>
+        <p>{{vendor.address}}</p>
+      </ion-item>
+      <ion-item actions>
+        <span ion-text item-start color="subtle">Price :</span>
+        <span ion-text item-start color="primary" class="item-bold">IDR {{vendor.price}}</span>
+        <button (click)="deleteFavorite(vendor)" ion-button color="danger" item-end >
+          <ion-icon name='heart'></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card>
+  
+  </ion-content>
+  

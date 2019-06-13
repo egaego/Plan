@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { ApiProvider } from '../../providers/api/api';
 import { HelpersProvider } from '../../providers/helpers/helpers';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
- * Generated class for the InspirationPage page.
+ * Generated class for the FavoritevendorPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,11 +12,11 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
 
 @IonicPage()
 @Component({
-  selector: 'page-inspiration',
-  templateUrl: 'inspiration.html',
+  selector: 'page-favoritevendor',
+  templateUrl: 'favoritevendor.html',
 })
-export class InspirationPage {
-  
+export class FavoritevendorPage {
+
   galleries: any = [];
   fileThumbUrl: string;
   fileUrl: string;
@@ -31,20 +31,15 @@ export class InspirationPage {
     public apiProvider: ApiProvider
   ) {
 
-    this.fileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/thumbs/';
-    this.fileUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/';
+    this.fileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/vendors/thumbs/';
+    this.fileUrl = this.helpersProvider.getBaseUrl() + 'files/vendors/';
     this.exceptionFileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/thumbs/default.png';
 
-    this.getInspirations();
+    this.getData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InspirationPage');
-  }
-
-
-  showPicture(gallery: any) {
-    this.helpersProvider.photoViewer.show(gallery.file != null ? this.fileUrl + gallery.file : this.exceptionFileThumbUrl, gallery.name);
   }
 
   deleteFavorite(gallery: any) {
@@ -55,7 +50,7 @@ export class InspirationPage {
     let params = {
     };
 
-    this.apiProvider.delete('gallery/delete/' + gallery.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
+    this.apiProvider.delete('vendor/delete/' + gallery.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
       .then((data) => {
         
         let result = JSON.parse(data.data);
@@ -63,7 +58,7 @@ export class InspirationPage {
         this.loading.dismiss();
         this.helpersProvider.toastPresent(result.message);
 
-        this.getInspirations();
+        this.getData();
       })
       .catch((error) => {
         this.loading.dismiss();
@@ -73,8 +68,8 @@ export class InspirationPage {
       });
   }
 
-  getInspirations() {
-    this.apiProvider.get('gallery/user-galleries?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
+  getData() {
+    this.apiProvider.get('vendor/user-vendor?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
       .then((data) => {
         console.log(data);
         let result = JSON.parse(data.data);
@@ -93,12 +88,30 @@ export class InspirationPage {
   }
 
   doRefresh(e) {
-    this.getInspirations();
+    this.getData();
     setTimeout(() => {
       console.log('Async operation has ended');
       e.complete();
     }, 2000);
   }
 
+
+  detail(item: any) {
+    this.navCtrl.push("DetailvendorPage");
+  }
+
+  seeInMap(vendor) {
+    // console.log('Send clicked');
+    // let toast = this.toastCtrl.create({
+    //   message: 'Seeing ' + vendor.name + ' on maps.',
+    //   duration: 3000,
+    //   position: 'button',
+    //   cssClass: 'dark-trans',
+    //   closeButtonText: 'OK',
+    //   showCloseButton: true
+    // });
+    // toast.present();
+    // alert('Seeing ' + vendor.name + ' on maps.');
+  }
 
 }

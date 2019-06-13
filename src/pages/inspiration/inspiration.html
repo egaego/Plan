@@ -14,6 +14,9 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="pins">
     <div class="pin" ion-card icon-start *ngFor="let gallery of galleries">
       <img [src]="gallery.file != null ? fileThumbUrl + gallery.file : exceptionFileThumbUrl" imageViewer (click)="showPicture(gallery)"/>

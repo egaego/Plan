@@ -22,38 +22,12 @@
 
 
 <ion-content class="card-background-page">
-
-<!--<div class="pas" >-->
-  <ion-card (click)="takeMeBack()" *ngFor="let vendor of vendors"  >
-    <img [src]="vendor.img" />
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card (click)="detail(vendor)" *ngFor="let vendor of vendors"  >
+    <img [src]="vendor.file != null ? fileUrl + vendor.file : exceptionFileThumbUrl" />
     <div class="card-title" ><ion-icon [name]="vendor.icon"></ion-icon></div>
     <div class="card-subtitle">{{vendor.name}}</div>
   </ion-card>
-  <!-- <ion-card>
-    <img src="http://www.weddingmagazine.us/wp-content/uploads/2018/09/Catering-It-Is-Time-to-Get-Ready-for-Wedding-Season.jpg"/>
-    <div class="card-title"><ion-icon name="camera"></ion-icon></div>
-    <div class="card-subtitle">Photograpy</div>
-  </ion-card>
-  <ion-card>
-    <img src="https://allurehairsalon.com.au/wp-content/uploads/hair-makeup-wedding.jpg"/>
-    <div class="card-title"><ion-icon name="bowtie"></ion-icon></div>
-    <div class="card-subtitle">Hair & Make Up</div>
-  </ion-card>
-  <ion-card>
-    <img src="https://www.theweddingring.ca/wp-content/uploads/Joie-de-Vivre-1-1.jpg"/>
-    <div class="card-title"><ion-icon name="hammer"></ion-icon></div>
-    <div class="card-subtitle">Decoration</div>
-  </ion-card>
-  <ion-card>
-    <img src="https://www.thepalmstc.com/wp-content/themes/wp-theme-fg-child/assets/images/in-page-galleries/large/the-palms-turks-caicos-honeymoon-01.jpg"/>
-    <div class="card-title"><ion-icon name="wine"></ion-icon></div>
-    <div class="card-subtitle">Honeymoon</div>
-  </ion-card>
-  <ion-card>
-    <img src="https://goodmockups.com/wp-content/uploads/2018/12/Free-Beautiful-Wedding-Invitation-Card-Mockup-PSD-Set.jpg"/>
-    <div class="card-title"><ion-icon name="mail-open"></ion-icon></div>
-    <div class="card-subtitle">Invitation</div>
-  </ion-card> -->
-<!--</div>-->
-
 </ion-content>

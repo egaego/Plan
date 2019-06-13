@@ -14,15 +14,18 @@
 
 
 <ion-content>
-  <img src="https://www.kenricks.com/wp-content/uploads/2017/08/cactering-packages-resized.jpg">
+  <img [src]="item.file != null ? fileThumbUrl + item.file : exceptionFileThumbUrl" imageViewer>
 
   <div ion-item no-lines>
     <ion-avatar item-start>
       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-avatar>
-    <h2>Mamih Makan</h2>
-    <p>Kalideres, Jakarta Barat</p>
-    <button ion-button color="primary" outline item-end>
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.address }}</p>
+    <button (click)="favorite(item)" ion-button color="danger" *ngIf="item.is_favorite == 1" item-end >
+      <ion-icon name='heart'></ion-icon>
+    </button>
+    <button (click)="favorite(item)" ion-button color="primary" *ngIf="item.is_favorite == 0" outline item-end >
       <ion-icon name='heart'></ion-icon>
     </button>
   </div>
@@ -50,31 +53,22 @@
 
   <ion-item no-lines>
     <h2 ion-text item-start color="subtle">Price :</h2>
-    <span ion-text item-end color="primary" class="item-bold">IDR 500K</span>
+    <span ion-text item-end color="primary" class="item-bold">IDR {{ item.price }}</span>
   </ion-item>
 
   <ion-card-content class="tdesc">
 
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-      <br>
-      <br>
-      It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-      <br>
-      </p>
+    <p>{{ item.description }}</p>
   </ion-card-content>
 
 
   <ion-item class="tsocmed" no-lines>
     <p>Social Media</p>
-    <button ion-button color="dark" outline item-end>
+    <button (click)="facebook()" ion-button color="dark" outline item-end>
       <ion-icon name='logo-facebook'></ion-icon>
     </button>
-    <button ion-button color="dark" outline item-end>
+    <button (click)="instagram()" ion-button color="dark" outline item-end>
       <ion-icon name='logo-instagram'></ion-icon>
-    </button>
-    <button ion-button color="dark" outline item-end>
-      <ion-icon name='logo-twitter'></ion-icon>
     </button>
   </ion-item>
 

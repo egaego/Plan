@@ -163,6 +163,10 @@ export class ProfilPage {
     this.navCtrl.push("SettingPage");
   }
 
+  goToFavVendor() {
+    this.navCtrl.push("FavoritevendorPage"); 
+  }
+
   goToInspiration() {
     this.navCtrl.push("InspirationPage"); 
   }
