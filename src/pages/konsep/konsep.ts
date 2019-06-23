@@ -19,7 +19,7 @@ export class KonsepPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  takeMeBack() {
+  addConcept() {
     this.navCtrl.push("FormkonsepPage");
   }
 

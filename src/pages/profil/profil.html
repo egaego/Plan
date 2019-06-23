@@ -57,6 +57,66 @@
   </div>
 
   <ion-card class="tcard" >
+    <ion-row class="counting-down-container">
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ days }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Hari
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ hours }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Jam
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ minutes }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Menit
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ seconds }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Detik
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="alert-container" *ngIf="isRequired" (click)="onClickRequiredLabel()">
+      <ion-col col-12 class="detail-subtitle" text-center>
+        {{ requiredLabel }}
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <ion-card class="tcard" >
   <ion-card-header >
     <h1>{{ user.name }}</h1>
     <ion-icon name="heart-outline"></ion-icon>

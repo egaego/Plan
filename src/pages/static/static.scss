@@ -1,0 +1,23 @@
+page-static {
+    .scroll-content, .fixed-content {
+      padding: 1.5rem 1.3rem;
+      color: color($colors, dark);
+    }
+    .page-title {
+      font-size: 2.2rem;
+      margin-top: 0.5rem;
+    }
+    .page-content {
+      text-align: center;
+      font-family: "Centaur";
+      p {
+        line-height: 3.2rem;
+        font-size: 2rem;
+      }
+      h2, h3, h4 {
+        font-weight: bold;
+      }
+    }
+    
+  }
+  

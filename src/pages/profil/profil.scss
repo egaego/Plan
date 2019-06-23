@@ -104,5 +104,41 @@ page-profil {
 
   }
 
+  .counting-down-container {
+    background-color: #f8f8f8;
+    padding: 0.8rem;
+    border-radius: 0.7rem;
+    .counting-number {
+      font-size: 3rem;
+      background: url("../assets/imgs/calendar_icon.png") no-repeat;
+      background-size: 100% 100%;
+      height: 6rem;
+      display:flex;
+      justify-content:center;
+      padding-top: 1rem;
+      align-items:center;
+      font-family: "Centaur";
+    }
+    .counting-label {
+      font-size: 1.5rem;
+      font-family: "Centaur";
+    }
+  }
+  
+  .detail-container {
+    background-color: #f8f8f8;
+    padding: 0.8rem;
+    margin-top: 10px;
+    border-radius: 0.7rem;
+    .detail-title {
+      font-size: 3.5rem;
+      font-family: 'Rochester', cursive !important;
+    }
+    .detail-subtitle {
+      font-size: 2rem;
+      font-family: "Centaur";
+    }
+  }
+
 
 }

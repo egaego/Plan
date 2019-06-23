@@ -22,17 +22,17 @@
   </ion-card-header>
 
   <ion-list  >
-    <button class="fontset" ion-item>
+    <button class="fontset" ion-item (click)="editProfile()">
       <ion-icon name="contact-outline" item-start small></ion-icon>
       Edit Profile
     </button>
 
-    <button class="fontset" ion-item>
+    <button class="fontset" ion-item (click)="changePassword()">
       <ion-icon name="medical-outline" item-start small></ion-icon>
       Ubah Password
     </button>
 
-    <button class="fontset" ion-item>
+    <button class="fontset" ion-item (click)="relationProfileDetail()">
       <ion-icon name="person-add-outline" item-start small></ion-icon>
       Detail Pasangan
     </button>
@@ -40,7 +40,7 @@
     <ion-item no-lines class="fontset" >
       <ion-icon name="notifications-outline" item-start small ></ion-icon>
       <ion-label >Notifications</ion-label>
-      <ion-toggle value="foo" checked="true"></ion-toggle>
+      <ion-toggle value="foo" [checked]="isNotification" (ionChange)="notification($event)"></ion-toggle>
     </ion-item>
 
 
@@ -50,17 +50,17 @@
 <ion-card class="tcard" >
 
 <ion-list>
-  <button class="fontset" ion-item>
+  <button class="fontset" ion-item (click)="aboutUs()">
     <ion-icon name="flag-outline" item-start small></ion-icon>
     Tentang Kami
   </button>
 
-  <button class="fontset" ion-item>
+  <button class="fontset" ion-item (click)="privacyPolicy()">
     <ion-icon name="bookmark-outline" item-start small></ion-icon>
     Kebijakan privasi
   </button>
 
-  <button class="fontset" ion-item>
+  <button class="fontset" ion-item (click)="reportProblem()">
     <ion-icon name="alert-outline" item-start small ></ion-icon>
     Laporkan Masalah
   </button>

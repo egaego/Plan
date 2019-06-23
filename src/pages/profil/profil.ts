@@ -71,6 +71,11 @@ export class ProfilPage {
     this.photoUrl = this.helpersProvider.getBaseUrl() + "files/user-relations/";
     this.token = localStorage.getItem('token');
     this.getUser();
+
+    this.getCountdown();
+    setInterval(() => { 
+      this.getCountdown(); 
+    }, 1000);
   }
 
   onClickRequiredLabel() {
@@ -252,5 +257,37 @@ export class ProfilPage {
     });
   }
 
+  getCountdown() {
+    if (!this.wedding_day) {
+      return;
+    }
+    
+    let target_date = null;
+    
+    if(this.platform.is('ios')) {
+      let t = this.wedding_day.split(/[- :]/);
+      // Apply each element to the Date function
+      target_date = new Date(t[0], t[1]-1, t[2], 0, 0, 0).getTime();
+    } else {
+      target_date = Date.parse(this.wedding_day + ' 00:00:00'); // set the countdown date
+    }
+    
+    // find the amount of "seconds" between now and target
+    let current_date = new Date().getTime();
+    
+    let seconds_left = (target_date - current_date) / 1000;
+    
+    if (current_date > target_date) {
+      seconds_left = 0;
+    }
+    
+    this.days = this.pad(Math.floor(seconds_left / 86400) );
+    seconds_left = seconds_left % 86400;
 
+    this.hours = this.pad(Math.floor(seconds_left / 3600) );
+    seconds_left = seconds_left % 3600;
+
+    this.minutes = this.pad(Math.floor(seconds_left / 60) );
+    this.seconds = this.pad(Math.floor( seconds_left % 60 ) );
+  }
 }

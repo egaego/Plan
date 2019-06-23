@@ -119,21 +119,50 @@ export class LoginPage {
         {
           text: 'Send',
           handler: data => {
-            console.log('Send clicked');
-            let toast = this.toastCtrl.create({
-              message: 'Email was sended successfully',
-              duration: 3000,
-              position: 'top',
-              cssClass: 'dark-trans',
-              closeButtonText: 'OK',
-              showCloseButton: true
-            });
-            toast.present();
+            if (data.email == "") {
+              let toast = this.toastCtrl.create({
+                message: 'Email is required',
+                duration: 3000,
+                position: 'bottom',
+                cssClass: 'dark-trans',
+                closeButtonText: 'Ok',
+                showCloseButton: true,
+              });
+              toast.onDidDismiss(() => {
+                this.forgotPass();
+                  ///undo operation
+              });
+              toast.present();
+              return;
+            }
+            
+            this.onProcessForgotPassword(data);
+            
           }
         }
       ]
     });
     forgot.present();
+  }
+
+  onProcessForgotPassword(data: any) {
+    this.loading = this.helpersProvider.loadingPresent("Please Wait ...");
+      
+    this.api.post('auth/forgot-password', data, {'Content-Type':'application/json'})
+      .then((data) => {
+        
+        let result = JSON.parse(data.data);
+        
+        this.loading.dismiss();
+        this.helpersProvider.toastPresent(result.message);
+      })
+      .catch((error) => {
+        this.loading.dismiss();
+        console.log(error);
+        
+        let result = JSON.parse(error.error);
+        this.helpersProvider.toastPresent(result.message);
+      });
   }
 
 }
