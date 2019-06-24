@@ -61,8 +61,8 @@ export class RelationProfileDetailPage {
           this.isFormRelation = true;
           this.isRelationDetail = false;
         } else {
-          this.isFormRelation = false;
-          this.isRelationDetail = true;
+          this.isFormRelation = true;
+          this.isRelationDetail = false;
         }
         this.loading.dismiss();
         this.relationProfileForm = this.formBuilder.group({

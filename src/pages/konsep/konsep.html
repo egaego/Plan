@@ -14,19 +14,21 @@
 
 
 <ion-content class="grid-basic-page">
-
-<ion-grid>
-    <ion-row>
-      <ion-col col-6 class="tgrid">
-        <ion-card [style.backgroundImage]="'url(https://www.theweddingring.ca/wp-content/uploads/Joie-de-Vivre-1-1.jpg)'">
-          <p class="card-title" >Decoration</p>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 class="tgrid" *ngFor="let concept of concepts">
+          <ion-card [style.backgroundImage]="getFile(concept)" (click)="onPressed($event, concept.id)">
+            <p class="card-title" >{{ concept.concept.name }}</p>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6 (click)="addConcept()" class="tgrid">
+          <ion-card [style.backgroundImage]="'url(https://cdn.sandals.com/sandals/v12/images/weddings/weddings-honeymoons/ocean-couple-wedding.jpg)'">
+          <ion-icon class="card-icon" name="add-circle-outline"></ion-icon>
         </ion-card>
-      </ion-col>
-      <ion-col col-6 (click)="addConcept()" class="tgrid">
-        <ion-card [style.backgroundImage]="'url(https://cdn.sandals.com/sandals/v12/images/weddings/weddings-honeymoons/ocean-couple-wedding.jpg)'">
-        <ion-icon class="card-icon" name="add-circle-outline"></ion-icon>
-      </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-content>

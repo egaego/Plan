@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-      <ion-title text-center *ngIf="isFormRelation">Daftarkan Pasangan Anda</ion-title>
+      <ion-title text-center *ngIf="isFormRelation">Detail Pasangan Anda</ion-title>
       <ion-title text-center *ngIf="isRelationDetail">Profil Pasangan Anda</ion-title>
     </ion-navbar>
   
@@ -19,7 +19,7 @@
       <ion-row>
         <ion-col>
           <p>
-            Daftarkan pasangan Anda untuk dapat mengakses informasi yang sama dengan Anda di Aplikasi Agenda Nikah ini.
+            Daftarkan pasangan Anda untuk dapat mengakses informasi yang sama dengan Anda di Aplikasi ini.
           </p>
           <ion-list>
             <ion-item [ngClass]="{'error-border':!relationProfileForm.controls.name.valid && relationProfileForm.controls.name.touched}">

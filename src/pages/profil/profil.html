@@ -31,7 +31,7 @@
     </div>
     <div>
       <ion-avatar>
-        <img class="tavatar" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <img class="tavatar" (click)="doUploadPhotoProfile()" [src]="photoProfile">
       </ion-avatar>
     </div>
     <div class="card-title">{{ user.name }}</div>

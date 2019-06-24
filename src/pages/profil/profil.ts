@@ -29,7 +29,9 @@ export class ProfilPage {
   wedding_day: any;
   user: any = {};
   defaultPhoto: any = "assets/imgs/profile.jpg";
+  defaultPhotoProfile: any = "assets/imgs/photo-profile.png";
   photo: any = this.defaultPhoto;
+  photoProfile: any = this.defaultPhotoProfile;
   dirs: any;
   openFileOptions: CameraOptions = {
     allowEdit: true,
@@ -42,6 +44,7 @@ export class ProfilPage {
     targetHeight: 560,
   };
   photoUrl: any;
+  photoProfileUrl: any;
   backgroundPhoto: any;
   
   days: any = '-';
@@ -69,6 +72,7 @@ export class ProfilPage {
   ) {
     this.events.publish("auth:checkLogin");
     this.photoUrl = this.helpersProvider.getBaseUrl() + "files/user-relations/";
+    this.photoProfileUrl = this.helpersProvider.getBaseUrl() + "files/users/";
     this.token = localStorage.getItem('token');
     this.getUser();
 
@@ -289,5 +293,113 @@ export class ProfilPage {
 
     this.minutes = this.pad(Math.floor(seconds_left / 60) );
     this.seconds = this.pad(Math.floor( seconds_left % 60 ) );
+  }
+
+  doUploadPhotoProfile() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: name,
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          icon: !this.platform.is('ios') ? 'trash' : null,
+          handler: () => {
+            
+            let alert = this.alertCtrl.create({
+              title: 'Anda yakin ingin menghapus foto ini?',
+              buttons: [
+                {
+                  text: 'Tidak',
+                  handler: () => {
+                    console.log('Disagree clicked');
+                  }
+                },
+                {
+                  text: 'Ya',
+                  handler: () => {
+                    this.loading = this.helpersProvider.loadingPresent("");
+                    this.deletePhotoProfile();
+                  }
+                }
+              ]
+            });
+            alert.present();
+          }
+        },{
+          text: this.user.relation.photo != null ? 'Change' : 'Upload',
+          icon: !this.platform.is('ios') ? 'ios-folder' : null,
+          handler: () => {
+            this.openFileProfile();
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+  
+  deletePhotoProfile() {
+    this.apiProvider.delete("user/delete-photo-profile/" + localStorage.getItem("user_id"), {}, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
+        .then((data) => {
+          
+          let result = JSON.parse(data.data);
+          this.loading.dismiss();
+          this.photoProfile = this.defaultPhotoProfile;
+          this.helpersProvider.toastPresent(result.message);
+          
+        })
+        .catch((error) => {
+          let result = JSON.parse(error.data);
+          this.loading.dismiss();
+          if (result.status == '401') {
+            this.events.publish("auth:forceLogout", result.message);
+          }
+          this.helpersProvider.toastPresent(result.message);
+        });
+  }
+
+  openFileProfile() {
+    this.camera.getPicture(this.openFileOptions).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      
+      this.loading = this.helpersProvider.loadingPresent("");
+      
+      let params = {
+        "photo_base64": 'data:image/jpeg;base64,' + imageData
+      }
+
+      this.apiProvider.post("user/upload-photo-profile/" + localStorage.getItem("user_id"), params, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
+        .then((data) => {
+          
+          let result = JSON.parse(data.data);
+          
+          this.loading.dismiss();
+          
+          this.photoProfile = this.photoProfileUrl + result.data.photo;
+          
+          this.helpersProvider.toastPresent(result.message);
+          
+        })
+        .catch((error) => {
+          let result = JSON.parse(error.data);
+          
+          this.loading.dismiss();
+          if (result.status == '401') {
+            this.events.publish("auth:forceLogout", result.message);
+          }
+          
+          this.helpersProvider.toastPresent(result.message);
+        });
+      
+    }, (err) => {
+      // Handle error
+        console.log(err);
+    });
   }
 }

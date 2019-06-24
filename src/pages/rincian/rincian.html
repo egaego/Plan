@@ -21,44 +21,16 @@
 
 <ion-content class="bg" >
 
-  <ion-card class="crincian" >
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+  <ion-card class="crincian"  *ngFor="let concept of concepts">
     <ion-item class="trincian" >
       <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Decoration
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 2,6jt</ion-badge>
-    </ion-item>
-  </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Make Up
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 500k</ion-badge>
-    </ion-item>
-  </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Photography
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 260k</ion-badge>
-    </ion-item>
-  </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Catering
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 1jt</ion-badge>
-    </ion-item>
-  </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Pra-Wedding
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 750k</ion-badge>
+      {{ concept.concept.name }}
+      <p class="tsub" >{{ concept.vendor.name }}</p>
+      <ion-badge class="tkonten" item-end>{{concept.vendor.price | currency:"IDR ":true:"0.2" }}</ion-badge>
     </ion-item>
   </ion-card>
 
@@ -67,6 +39,6 @@
 <ion-footer>
     <ion-item no-lines class="ttotal" item-start >
       Total :
-      <ion-badge class="tkonten" item-end>IDR 750k</ion-badge>
+      <ion-badge class="tkonten" item-end>{{total | currency:"IDR ":true:"0.2" }}</ion-badge>
     </ion-item>
 </ion-footer>

@@ -7,6 +7,12 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss(null)">
+        <span ion-text color="white" showWhen="ios">Batal</span>
+        <ion-icon name="md-close" color="white" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Form Konsep</ion-title>
   </ion-navbar>
 
@@ -16,41 +22,32 @@
 <ion-content>
   <ion-item>
       <ion-label>Nama Konsep</ion-label>
-      <ion-select [(ngModel)]="konsep">
-        <ion-option value="nes">Decoration</ion-option>
-        <ion-option value="n64">Make Up</ion-option>
-        <ion-option value="ps">Catering</ion-option>
-        <ion-option value="genesis">Photograpy</ion-option>
-        <ion-option value="saturn">Entertainment</ion-option>
-        <ion-option value="snes">Invitation</ion-option>
+      <ion-select [(ngModel)]="konsepForm" (ionChange)="onKonsepFormChanged($event)">
+        <ion-option  *ngFor="let concept of concepts" [value]="concept.id">{{ concept.name }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
         <ion-label>Vendor</ion-label>
-        <ion-select [(ngModel)]="vendor" interface="popover">
-          <ion-option value="nes">Joele Decoration</ion-option>
-          <ion-option value="n64">Fiori.Co</ion-option>
-          <ion-option value="ps">HR team</ion-option>
-          <ion-option value="genesis">Nona Manis</ion-option>
-          <ion-option value="saturn">Heavent's Gift</ion-option>
+        <ion-select [(ngModel)]="vendorForm" interface="popover"(ionChange)="onVendorFormChanged($event)">
+          <ion-option  *ngFor="let vendor of vendors" [value]="vendor.id">{{ vendor.name }}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
           Alamat
           <ion-note item-end>
-          Kemang, Jakarta Selatan
+          {{ address }}
           </ion-note>
         </ion-item>
         <ion-item>
             Harga
               <ion-note item-end>
-            IDR 300k
+                {{ price | currency:"IDR ":true:"0.2" }}
             </ion-note>
           </ion-item>
         <ion-row >
 
           <ion-col >
-            <button ion-button block color="primary" icon-start>
+            <button ion-button block color="primary" icon-start (click)="onSubmit()">
               <ion-icon name='checkmark-circle'></ion-icon>
               Save
             </button>
