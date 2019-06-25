@@ -3,9 +3,14 @@ page-profil {
   .tavatar{
     border-radius: 50%;
     position: absolute;
-    width: 17%;
+    width: 5em;
+    height: 5em;
     left: 41%;
     top: 50%;
+  }
+
+  .backgroundAvatar {
+    max-height: 20em;
   }
 
   .ticon{
@@ -43,6 +48,10 @@ page-profil {
     top: 90%;
     width: 100%;
     color: #fff;
+  }
+  h1 {
+    font-family: "Rochester";
+    font-size: 7em;
   }
   .tcard{
     //background-image: linear-gradient(90deg, #FFEDE7, #FFF7F5);
@@ -132,13 +141,14 @@ page-profil {
     border-radius: 0.7rem;
     .detail-title {
       font-size: 3.5rem;
-      font-family: 'Rochester', cursive !important;
     }
     .detail-subtitle {
       font-size: 2rem;
       font-family: "Centaur";
     }
   }
+}
 
-
+.popover-content{
+  width: 100% !important;
 }

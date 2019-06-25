@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { HelpersProvider } from '../../providers/helpers/helpers';
 import { ApiProvider } from '../../providers/api/api';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
 /**
  * Generated class for the FormkonsepPage page.
@@ -24,16 +25,21 @@ export class FormkonsepPage {
   exceptionFileThumbUrl: string;
   loading: any;
 
-  konsepForm: any;
-  vendorForm: any;
+  form: FormGroup;
+  conceptId: AbstractControl;
+  vendorId: AbstractControl;
+  date: AbstractControl;
   address: any;
   price: any;
+  dateMin: any;
+  dateMax: any;
   
   constructor(
     public navParams: NavParams, 
     public navCtrl: NavController,
     public viewCtrl: ViewController,
     public helpersProvider: HelpersProvider,
+    private formBuilder: FormBuilder,
     public events: Events,
     public apiProvider: ApiProvider) {
       this.fileUrl = this.helpersProvider.getBaseUrl() + 'files/concepts/';
@@ -41,6 +47,20 @@ export class FormkonsepPage {
       // this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
       this.loading = this.helpersProvider.loadingPresent("Please Wait ...");
       this.getData();
+
+      this.form = this.formBuilder.group({
+        conceptId: [this.conceptId, Validators.compose([Validators.required])],
+        vendorId: [this.vendorId, Validators.compose([Validators.required])],
+        date: [this.date, Validators.compose([Validators.required])]
+      });
+      
+      let d = new Date();
+      
+      let currentDate = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0);
+      let maxDate = new Date(d.getFullYear() + 3, d.getMonth(), d.getDate(), 0, 0, 0);
+      
+      this.dateMin = currentDate.getFullYear();
+      this.dateMax = maxDate.getFullYear();
   }
 
   getData() {
@@ -83,12 +103,13 @@ export class FormkonsepPage {
     console.log('ionViewDidLoad FormkonsepPage');
   }
 
-  onSubmit() {
+  onSubmit(value:any) : void {
     this.loading = this.helpersProvider.loadingPresent("Please Wait ...");
     let params = {
       "user_id" : localStorage.getItem("user_id"),
-      "concept_id" : this.konsepForm,
-      "vendor_id" : this.vendorForm
+      "concept_id" : value.conceptId,
+      "vendor_id" : value.vendorId,
+      "date" : value.date
     }
 
     this.apiProvider.post('concept-detail/store', params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})

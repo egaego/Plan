@@ -32,7 +32,7 @@
     </ion-item>
     <ion-item actions>
       <span ion-text item-start color="subtle">Price :</span>
-      <span ion-text item-start color="primary" class="item-bold">IDR {{vendor.price}}</span>
+      <span ion-text item-start color="primary" class="item-bold">{{vendor.price | currency:"IDR ":true:"0.0" }}</span>
       <button (click)="favorite(vendor)" ion-button color="danger" *ngIf="vendor.is_favorite == 1" item-end >
         <ion-icon name='heart'></ion-icon>
       </button>

@@ -133,5 +133,12 @@ export class RincianPage {
       });
   }
 
+  print() {
+    this.helpersProvider.screenshot.save('jpg', 80, 'myscreenshot.jpg').then(response => {
+      this.helpersProvider.socialSharing.share("PlanYourDays.id Rincian Biaya", "PlanYourDays.id Rincian Biaya", response.filePath);
+    },
+    error => {
 
+    });
+  }
 }

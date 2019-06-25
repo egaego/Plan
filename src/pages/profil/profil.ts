@@ -255,7 +255,7 @@ export class ProfilPage {
 
   presentNotifications(myEvent) {
     console.log(myEvent);
-    let popover = this.popoverCtrl.create(NotificationsPage);
+    let popover = this.popoverCtrl.create(NotificationsPage, {}, {cssClass: "contact-popover"});
     popover.present({
       ev: myEvent
     });

@@ -3,20 +3,9 @@
   	<ion-icon name="notifications" color="primary"></ion-icon>
   	<span ion-text color="primary" class="bold">Notifications</span>
   </ion-list-header>
-  <button ion-item color="primary" class="text-1x" tappable (click)="close()">
+  <button ion-item tappable (click)="toToMessage(message)" *ngFor="let message of messages">
   	<ion-icon name="mail"></ion-icon>
-  	New booking success!
-  </button>
-  <button ion-item color="primary" class="text-1x" tappable (click)="close()">
-  	<ion-icon name="mail"></ion-icon>
-  	Activity rescheduled
-  </button>
-  <button ion-item class="text-1x" tappable (click)="close()">
-  	<ion-icon name="mail-open" color="primary"></ion-icon>
-  	<span ion-text color="primary">Activity rescheduled</span>
-  </button>
-  <button ion-item class="text-1x" tappable (click)="close()">
-  	<ion-icon name="mail-open" color="primary"></ion-icon>
-  	<span ion-text color="primary">Activity rescheduled</span>
+    {{ message.name }} <br/>
+    <p [innerHTML]="message.description"></p>
   </button>
 </ion-list>

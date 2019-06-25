@@ -20,37 +20,52 @@
 
 
 <ion-content>
+  <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <ion-item>
       <ion-label>Nama Konsep</ion-label>
-      <ion-select [(ngModel)]="konsepForm" (ionChange)="onKonsepFormChanged($event)">
+      <ion-select formControlName="conceptId" (ionChange)="onKonsepFormChanged($event)">
         <ion-option  *ngFor="let concept of concepts" [value]="concept.id">{{ concept.name }}</ion-option>
       </ion-select>
+      <p color="danger" class="form-error" *ngIf="form.controls.conceptId.hasError('required') && form.controls.conceptId.touched">
+          Konsep harus diisi
+        </p>
     </ion-item>
     <ion-item>
-        <ion-label>Vendor</ion-label>
-        <ion-select [(ngModel)]="vendorForm" interface="popover"(ionChange)="onVendorFormChanged($event)">
-          <ion-option  *ngFor="let vendor of vendors" [value]="vendor.id">{{ vendor.name }}</ion-option>
-        </ion-select>
+      <ion-label>Vendor</ion-label>
+      <ion-select formControlName="vendorId" (ionChange)="onVendorFormChanged($event)">
+        <ion-option  *ngFor="let vendor of vendors" [value]="vendor.id">{{ vendor.name }}</ion-option>
+      </ion-select>
+      <p color="danger" class="form-error" *ngIf="form.controls.vendorId.hasError('required') && form.controls.vendorId.touched">
+          Vendor harus diisi
+        </p>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tanggal</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" formControlName="date" required min="{{ dateMin }}" max="{{ dateMax }}"></ion-datetime>
+      <p color="danger" class="form-error" *ngIf="form.controls.date.hasError('required') && form.controls.date.touched">
+        Tanggal harus diisi
+      </p>
+    </ion-item>
+    <ion-item>
+        Alamat
+        <ion-note item-end>
+        {{ address }}
+        </ion-note>
       </ion-item>
       <ion-item>
-          Alamat
-          <ion-note item-end>
-          {{ address }}
+          Harga
+            <ion-note item-end>
+              {{ price | currency:"IDR ":true:"0.2" }}
           </ion-note>
         </ion-item>
-        <ion-item>
-            Harga
-              <ion-note item-end>
-                {{ price | currency:"IDR ":true:"0.2" }}
-            </ion-note>
-          </ion-item>
-        <ion-row >
+      <ion-row >
 
-          <ion-col >
-            <button ion-button block color="primary" icon-start (click)="onSubmit()">
-              <ion-icon name='checkmark-circle'></ion-icon>
-              Save
-            </button>
-          </ion-col>
-        </ion-row>
+        <ion-col >
+          <button ion-button block color="primary" icon-start type="submit" [disabled]="!form.valid">
+            <ion-icon name='checkmark-circle'></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
 </ion-content>

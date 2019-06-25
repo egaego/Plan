@@ -44,7 +44,7 @@
       </button>
     </ion-col>
     <ion-col text-right>
-      <button ion-button block small color="primary" icon-start>
+      <button ion-button block small color="primary" icon-start (click)="share()">
         <ion-icon name='share-alt'></ion-icon>
         Share
       </button>
@@ -53,7 +53,7 @@
 
   <ion-item no-lines>
     <h2 ion-text item-start color="subtle">Price :</h2>
-    <span ion-text item-end color="primary" class="item-bold">IDR {{ item.price }}</span>
+    <span ion-text item-end color="primary" class="item-bold">{{ item.price | currency:"IDR ":true:"0.0"  }}</span>
   </ion-item>
 
   <ion-card-content class="tdesc">

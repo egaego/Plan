@@ -54,11 +54,13 @@ export class DetailvendorPage {
   }
 
   dooAlertemail() {
-    let alert = this.alerCtrl.create({
-      title: this.item.email,
-      buttons: ['Ok']
-    });
-    alert.present()
+    let email = {
+      to: this.item.email,
+      subject: 'PlanYourDays.id - ' + this.item.name,
+      body: '',
+      isHtml: true
+    }
+    this.helpersProvider.emailComposer.open(email);
   }
 
   instagram() {
@@ -69,6 +71,13 @@ export class DetailvendorPage {
     this.helpersProvider.inAppBrowser.create('https://www.facebook.com/' + this.item.facebook, '_blank', this.browserOptions);
   }
 
+  getFile() {
+    return this.item.file != null ? this.fileThumbUrl + this.item.file : this.exceptionFileThumbUrl;
+  }
+  
+  share() {
+    this.helpersProvider.socialSharing.share(this.item.name, this.item.name, this.getFile(), this.item.website);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailvendorPage');
   }

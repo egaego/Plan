@@ -164,5 +164,39 @@
       "PHOTOLIBRARY_USAGE_DESCRIPTION": "This app needs read to photo library for user photo profile and wedding events",
       "MICROPHONE_USAGE_DESCRIPTION": "This app needs microphone access"
     }
+  },
+  "cordova-plugin-email-composer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-email-composer"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-x-socialsharing": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-x-socialsharing"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+    }
+  },
+  "es6-promise-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "es6-promise-plugin@^4.1.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "com.darktalker.cordova.screenshot": {
+    "source": {
+      "type": "registry",
+      "id": "com.darktalker.cordova.screenshot"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

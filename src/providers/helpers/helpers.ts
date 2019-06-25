@@ -6,6 +6,9 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { CallNumber } from '@ionic-native/call-number';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Screenshot } from '@ionic-native/screenshot';
 
 /*
   Generated class for the HelpersProvider provider.
@@ -28,7 +31,10 @@ export class HelpersProvider {
     public datePicker: DatePicker,
     public callNumber: CallNumber,
     public photoViewer: PhotoViewer,
-    public inAppBrowser: InAppBrowser
+    public inAppBrowser: InAppBrowser,
+    public emailComposer: EmailComposer,
+    public socialSharing: SocialSharing,
+    public screenshot: Screenshot
     ) {
     
   }
