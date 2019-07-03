@@ -32,6 +32,7 @@
       <ion-item actions>
         <span ion-text item-start color="subtle">Price :</span>
         <span ion-text item-start color="primary" class="item-bold">IDR {{vendor.price}}</span>
+        <span ion-text item-end class="item-bold">{{vendor.category}}</span>
         <button (click)="deleteFavorite(vendor)" ion-button color="danger" item-end >
           <ion-icon name='heart'></ion-icon>
         </button>

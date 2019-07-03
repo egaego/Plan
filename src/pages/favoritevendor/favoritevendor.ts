@@ -97,7 +97,7 @@ export class FavoritevendorPage {
 
 
   detail(item: any) {
-    this.navCtrl.push("DetailvendorPage");
+    this.navCtrl.push("DetailvendorPage", {item: item});
   }
 
   seeInMap(vendor) {
