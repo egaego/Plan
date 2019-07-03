@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,AlertController, ToastController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, ToastController, NavParams, Events } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 
 import {DetailvendorPage} from '../detailvendor/detailvendor';
@@ -35,7 +35,7 @@ export class ListvendorPage {
   }
 
   constructor(
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public navCtrl: NavController,
     public helpersProvider: HelpersProvider,
     public events: Events,
@@ -72,7 +72,7 @@ export class ListvendorPage {
     this.apiProvider.get('vendor/detail/'+this.item.id+'?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
       .then((data) => {
         let result = JSON.parse(data.data);
-        
+
         this.vendors = result.data;
         this.defaultVendors = result.data;
 
@@ -110,9 +110,9 @@ export class ListvendorPage {
     if (item.is_favorite == 0) {
       this.apiProvider.post('vendor/store/' + item.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-            
+
           let result = JSON.parse(data.data);
-          
+
           this.loading.dismiss();
           this.helpersProvider.toastPresent(result.message);
         })
@@ -125,9 +125,9 @@ export class ListvendorPage {
     } else {
       this.apiProvider.delete('vendor/delete/' + item.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-          
+
           let result = JSON.parse(data.data);
-          
+
           this.loading.dismiss();
           this.helpersProvider.toastPresent(result.message);
         })
@@ -138,7 +138,7 @@ export class ListvendorPage {
           this.helpersProvider.toastPresent(result.message);
         });
     }
-      
+
     for ( var i=0 ; i < this.vendors.length; i++) {
       if (this.vendors[i].id == item.id) {
         this.vendors[i].is_favorite = !item.is_favorite;

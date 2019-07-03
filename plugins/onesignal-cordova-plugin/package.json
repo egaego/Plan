@@ -16,13 +16,12 @@
     "fetchSpec": "^2.3.3"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/onesignal-cordova-plugin/-/onesignal-cordova-plugin-2.4.7.tgz",
   "_shasum": "834dcbf6adf36ed989770320dc35c933e9568ea0",
   "_spec": "onesignal-cordova-plugin@^2.3.3",
-  "_where": "/Users/hendri/Documents/ionic-project/PYD",
+  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
   "author": {
     "name": "Josh Kasten & Brad Hesse"
   },

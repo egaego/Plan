@@ -37,7 +37,7 @@ export class NotificationsPage {
     this.apiProvider.get('messages?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
       .then((data) => {
         let result = JSON.parse(data.data);
-        
+
         this.messages = result.data;
 
       })

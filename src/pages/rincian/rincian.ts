@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ActionSheetController, AlertController, Events } from 'ionic-angular';
 import { HelpersProvider } from '../../providers/helpers/helpers';
 import { ApiProvider } from '../../providers/api/api';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 /**
  * Generated class for the RincianPage page.
@@ -25,12 +26,13 @@ export class RincianPage {
   total: any = 0;
 
   constructor(
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public navCtrl: NavController,
     public helpersProvider: HelpersProvider,
-    public modalCtrl: ModalController, 
+    public modalCtrl: ModalController,
     public actionSheetCtrl: ActionSheetController,
     public alertCtrl: AlertController,
+    private emailComposer: EmailComposer,
     public events: Events,
     public apiProvider: ApiProvider) {
       this.fileUrl = this.helpersProvider.getBaseUrl() + 'files/concepts/';
@@ -43,7 +45,7 @@ export class RincianPage {
     this.apiProvider.get('concept-detail/?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
       .then((data) => {
         let result = JSON.parse(data.data);
-        
+
         this.concepts = result.data;
         this.defaultConcepts = result.data;
         this.total = result.total;
@@ -85,7 +87,7 @@ export class RincianPage {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            
+
             let alert = this.alertCtrl.create({
               title: 'Anda yakin ingin menghapus data ini?',
               message: '',
@@ -116,7 +118,7 @@ export class RincianPage {
     this.apiProvider.delete('concept-detail/delete/'+id+'?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
       .then((data) => {
         let result = JSON.parse(data.data);
-        
+
         this.concepts = result.data;
         this.defaultConcepts = result.data;
 
@@ -135,7 +137,20 @@ export class RincianPage {
 
   print() {
     this.helpersProvider.screenshot.save('jpg', 80, 'myscreenshot.jpg').then(response => {
-      this.helpersProvider.socialSharing.share("PlanYourDays.id Rincian Biaya", "PlanYourDays.id Rincian Biaya", response.filePath);
+      //this.helpersProvider.socialSharing.share("PlanYourDays.id Rincian Biaya", "PlanYourDays.id Rincian Biaya", response.filePath);
+
+    let email = {
+    //to: 'ega281291@gmail.com',
+    attachments: [
+    response.filePath
+    ],
+
+    subject: 'test email',
+    body: 'hay cool',
+    isHtml: true
+    };
+
+    this.emailComposer.open(email);
     },
     error => {
 

@@ -1,28 +1,27 @@
 {
-  "_from": "cordova-plugin-email-composer",
+  "_from": "cordova-plugin-email-composer@0.9.2",
   "_id": "cordova-plugin-email-composer@0.9.2",
   "_inBundle": false,
   "_integrity": "sha512-w8eQZ6lbYWut13o/Cprixmacfyq5hds7DAjuTL34eQhyWWd/DA/o6ziiyY3So2ZOozeQ4DxQpyPN4BiqUKcyew==",
   "_location": "/cordova-plugin-email-composer",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-email-composer",
+    "raw": "cordova-plugin-email-composer@0.9.2",
     "name": "cordova-plugin-email-composer",
     "escapedName": "cordova-plugin-email-composer",
-    "rawSpec": "",
+    "rawSpec": "0.9.2",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "0.9.2"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-email-composer/-/cordova-plugin-email-composer-0.9.2.tgz",
   "_shasum": "264c66d45679acf2781c2cec54e32b2c1facfdb8",
-  "_spec": "cordova-plugin-email-composer",
-  "_where": "/Users/hendri/Documents/ionic-project/PYD",
+  "_spec": "cordova-plugin-email-composer@0.9.2",
+  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
   "author": {
     "name": "Sebastián Katzer"
   },

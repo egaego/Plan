@@ -1,28 +1,27 @@
 {
-  "_from": "com.darktalker.cordova.screenshot",
+  "_from": "com.darktalker.cordova.screenshot@0.1.6",
   "_id": "com.darktalker.cordova.screenshot@0.1.6",
   "_inBundle": false,
   "_integrity": "sha1-ZHpTRQ+WFyGbYyg/WGaF4nzblrM=",
   "_location": "/com.darktalker.cordova.screenshot",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "com.darktalker.cordova.screenshot",
+    "raw": "com.darktalker.cordova.screenshot@0.1.6",
     "name": "com.darktalker.cordova.screenshot",
     "escapedName": "com.darktalker.cordova.screenshot",
-    "rawSpec": "",
+    "rawSpec": "0.1.6",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "0.1.6"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/com.darktalker.cordova.screenshot/-/com.darktalker.cordova.screenshot-0.1.6.tgz",
   "_shasum": "647a53450f9617219b63283f586685e27cdb96b3",
-  "_spec": "com.darktalker.cordova.screenshot",
-  "_where": "/Users/hendri/Documents/ionic-project/PYD",
+  "_spec": "com.darktalker.cordova.screenshot@0.1.6",
+  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
   "author": {
     "name": "Hongbo LU"
   },

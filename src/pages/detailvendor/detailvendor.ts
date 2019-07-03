@@ -31,9 +31,9 @@ export class DetailvendorPage {
   }
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public alerCtrl: AlertController, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alerCtrl: AlertController,
     public viewCtrl: ViewController,
     public helpersProvider: HelpersProvider,
     public events: Events,
@@ -64,7 +64,8 @@ export class DetailvendorPage {
   }
 
   instagram() {
-    this.helpersProvider.inAppBrowser.create('https://www.instagram.com/' + this.item.instagram, '_blank', this.browserOptions);
+    //this.helpersProvider.inAppBrowser.create('https://www.instagram.com/' + this.item.instagram, '_blank', this.browserOptions);
+   this.helpersProvider.inAppBrowser.create('https://www.instagram.com/' + this.item.instagram, '_blank', this.browserOptions);
   }
 
   facebook() {
@@ -74,7 +75,7 @@ export class DetailvendorPage {
   getFile() {
     return this.item.file != null ? this.fileThumbUrl + this.item.file : this.exceptionFileThumbUrl;
   }
-  
+
   share() {
     this.helpersProvider.socialSharing.share(this.item.name, this.item.name, this.getFile(), this.item.website);
   }
@@ -93,9 +94,9 @@ export class DetailvendorPage {
     if (item.is_favorite == 0) {
       this.apiProvider.post('vendor/store/' + item.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-            
+
           let result = JSON.parse(data.data);
-          
+
           this.loading.dismiss();
           this.helpersProvider.toastPresent(result.message);
         })
@@ -108,9 +109,9 @@ export class DetailvendorPage {
     } else {
       this.apiProvider.delete('vendor/delete/' + item.id, params, {'Content-Type':'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-          
+
           let result = JSON.parse(data.data);
-          
+
           this.loading.dismiss();
           this.helpersProvider.toastPresent(result.message);
         })
