@@ -18,7 +18,7 @@
 
   <div ion-item no-lines>
     <ion-avatar item-start>
-      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      <img [src]="item.avatar != null ? fileUrl + item.avatar : exceptionFileThumbUrl" imageViewer>
     </ion-avatar>
     <h2>{{ item.name }}</h2>
     <p>{{ item.address }}</p>
