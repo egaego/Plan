@@ -126,8 +126,6 @@ export class FormkonsepPage {
           let result = JSON.parse(error.error);
           this.helpersProvider.toastPresent(result.message);
         });
-
-    this.loading.dismiss();
   }
 
   dismiss(data: any) {
