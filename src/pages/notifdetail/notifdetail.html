@@ -7,35 +7,30 @@
 <ion-header>
 
   <ion-navbar >
-    <ion-title>Notification</ion-title>
+    <ion-title>{{ item.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <img src="https://www.kenricks.com/wp-content/uploads/2017/08/cactering-packages-resized.jpg">
+  <img [src]="item.file != null ? fileThumbUrl + item.file : exceptionFileThumbUrl" imageViewer>
 
   <div ion-item >
-    <ion-title>Test Notif</ion-title>
+    <ion-title>{{ item.name }}</ion-title>
   </div>
 
 
   <ion-card-content class="tdesc">
 
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-      <br>
-      <br>
-      It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-      <br>
-      </p>
+    <p [innerHTML]="item.description"></p>
+
   </ion-card-content>
 
 
   <ion-item class="tsocmed" no-lines>
     <p>Social Media</p>
-    <button ion-button color="primary" item-end>
+    <button ion-button color="primary" item-end (click)="share()">
       <ion-icon name='md-share'></ion-icon>
     </button>
   </ion-item>

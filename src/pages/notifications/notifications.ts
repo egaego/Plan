@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, Events } from 'ionic-angular';
+import { ViewController, Events, NavParams, NavController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { HelpersProvider } from '../../providers/helpers/helpers';
 
@@ -22,14 +22,16 @@ export class NotificationsPage {
     public viewCtrl: ViewController,
     private helpersProvider: HelpersProvider,
     private events: Events,
-    public apiProvider: ApiProvider
+    public apiProvider: ApiProvider,
+    public navCtrl: NavController, 
+    public navParams: NavParams
     ) {
 
       this.getData();
   }
 
   toToMessage(message) {
-
+    this.navCtrl.push("NotifdetailPage", {item: message});
     this.viewCtrl.dismiss();
   }
 
@@ -50,6 +52,4 @@ export class NotificationsPage {
         console.log(error);
       });
   }
-
-
 }
