@@ -39,6 +39,10 @@
 <ion-footer>
     <ion-item no-lines class="ttotal" item-start >
       Total :
-      <ion-badge class="tkonten" item-end>{{total | currency:"IDR ":true:"0.2" }}</ion-badge>
+      <ion-badge class="tkonten" >{{total | currency:"IDR ":true:"0.2" }}</ion-badge>
+      <button class="tkontenn" ion-button item-end icon-start outline>
+        <ion-icon name="cart"></ion-icon>
+        <div >BAYAR</div>
+        </button>
     </ion-item>
 </ion-footer>

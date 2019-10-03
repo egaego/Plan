@@ -33,14 +33,14 @@
   <ion-row class="tcont">
     <ion-col>
       <button ion-button block outline small color="primary" icon-start (click)="doAlertcall()" >
-        <ion-icon name='call'></ion-icon>
-        No Telp
+        <ion-icon name='calculator'></ion-icon>
+        Price List
       </button>
     </ion-col>
     <ion-col text-center>
       <button ion-button block outline small color="primary" icon-start (click)="dooAlertemail()">
-        <ion-icon name='mail'></ion-icon>
-        Email
+        <ion-icon name='cash'></ion-icon>
+        Promo
       </button>
     </ion-col>
     <ion-col text-right>
@@ -52,7 +52,7 @@
   </ion-row>
 
   <ion-item no-lines>
-    <h2 ion-text item-start color="subtle">Price :</h2>
+    <h2 ion-text item-start color="subtle">Mulai dari :</h2>
     <span ion-text item-end color="primary" class="item-bold">{{ item.price | currency:"IDR ":true:"0.0"  }}</span>
   </ion-item>
 
