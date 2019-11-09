@@ -16,12 +16,13 @@
     "fetchSpec": "^0.2.0"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/com-badrit-base64/-/com-badrit-base64-0.2.0.tgz",
   "_shasum": "bbd86033aa1e1acff7ee446a6c80c8bd42f4dd37",
   "_spec": "com-badrit-base64@^0.2.0",
-  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
+  "_where": "/Users/hendri/Documents/ionic-project/PYD",
   "bugs": {
     "url": "https://github.com/hazemhagrass/phonegap-base64/issues"
   },

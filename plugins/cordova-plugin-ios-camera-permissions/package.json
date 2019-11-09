@@ -16,12 +16,13 @@
     "fetchSpec": "^1.2.0"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-ios-camera-permissions/-/cordova-plugin-ios-camera-permissions-1.2.0.tgz",
   "_shasum": "94612c7de5fdcf59b8630057b50739b4909e0ac9",
   "_spec": "cordova-plugin-ios-camera-permissions@^1.2.0",
-  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
+  "_where": "/Users/hendri/Documents/ionic-project/PYD",
   "author": {
     "name": "Andreas Jacob",
     "email": "andreas@cordobo.de",

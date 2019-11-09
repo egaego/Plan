@@ -16,12 +16,13 @@
     "fetchSpec": "0.9.2"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-email-composer/-/cordova-plugin-email-composer-0.9.2.tgz",
   "_shasum": "264c66d45679acf2781c2cec54e32b2c1facfdb8",
   "_spec": "cordova-plugin-email-composer@0.9.2",
-  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
+  "_where": "/Users/hendri/Documents/ionic-project/PYD",
   "author": {
     "name": "Sebastián Katzer"
   },

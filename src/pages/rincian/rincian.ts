@@ -24,6 +24,7 @@ export class RincianPage {
   exceptionFileThumbUrl: string;
   loading: any;
   total: any = 0;
+  trxId: any = 0;
 
   constructor(
     public navParams: NavParams,
@@ -49,6 +50,7 @@ export class RincianPage {
         this.concepts = result.data;
         this.defaultConcepts = result.data;
         this.total = result.total;
+        this.trxId = result.transaction_id;
 
       })
       .catch((error) => {
@@ -76,6 +78,9 @@ export class RincianPage {
   getFile(item) {
     let img = item.concept.file != null ? this.fileUrl + item.concept.file : this.exceptionFileThumbUrl;
     return "url("+img+")";
+  }
+  goToPembayaran() {
+    this.navCtrl.push("PembayaranPage", {concepts: this.concepts, total: this.total, trx_id: this.trxId});
   }
 
   onPressed(e, id) {
@@ -155,5 +160,9 @@ export class RincianPage {
     error => {
 
     });
+  }
+
+  history() {
+    this.navCtrl.push("HistoryPage");
   }
 }

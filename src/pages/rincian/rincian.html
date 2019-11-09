@@ -10,6 +10,9 @@
     <ion-title start >Rincian</ion-title>
 
     <ion-buttons end>
+      <button class="tprint" ion-button icon-only (click)="history()">
+        <ion-icon name="basket" color="primary"></ion-icon>
+      </button>
       <button class="tprint" ion-button icon-only (click)="print()">
         <ion-icon name="mail" color="primary"></ion-icon>
       </button>
@@ -28,9 +31,9 @@
   <ion-card class="crincian"  *ngFor="let concept of concepts">
     <ion-item class="trincian" >
       <ion-icon name="checkmark-circle" item-start></ion-icon>
-      {{ concept.concept.name }}
-      <p class="tsub" >{{ concept.vendor.name }}</p>
-      <ion-badge class="tkonten" item-end>{{concept.vendor.price | currency:"IDR ":true:"0.2" }}</ion-badge>
+      {{ concept.concept.name }} - {{ concept.vendor.name }}
+      <p class="tsub" >{{ concept.vendor_package.name }}</p>
+      <ion-badge class="tkonten" item-end>{{concept.grand_total | currency:"IDR ":true:"0.2" }}</ion-badge>
     </ion-item>
   </ion-card>
 
@@ -40,7 +43,7 @@
     <ion-item no-lines class="ttotal" item-start >
       Total :
       <ion-badge class="tkonten" >{{total | currency:"IDR ":true:"0.2" }}</ion-badge>
-      <button class="tkontenn" ion-button item-end icon-start outline>
+      <button class="tkontenn" (click)="goToPembayaran()" ion-button item-end icon-start outline>
         <ion-icon name="cart"></ion-icon>
         <div >BAYAR</div>
         </button>

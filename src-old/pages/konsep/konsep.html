@@ -1,0 +1,34 @@
+<!--
+  Generated template for the KonsepPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Konsep</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="grid-basic-page">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 class="tgrid" *ngFor="let concept of concepts">
+          <ion-card [style.backgroundImage]="getFile(concept)" (click)="onPressed($event, concept.id)">
+            <p class="card-title" >{{ concept.concept.name }}</p>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6 (click)="addConcept()" class="tgrid">
+          <ion-card color="light">
+          <ion-icon class="card-icon" name="add-circle"></ion-icon>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

@@ -40,6 +40,15 @@
         </p>
     </ion-item>
     <ion-item>
+        <ion-label>Vendor Package</ion-label>
+        <ion-select formControlName="vendorPackageId" (ionChange)="onVendorPackageFormChanged($event)">
+          <ion-option  *ngFor="let package of vendorPackages" [value]="package.id">{{ package.name }}</ion-option>
+        </ion-select>
+        <p color="danger" class="form-error" *ngIf="form.controls.vendorPackageId.hasError('required') && form.controls.vendorPackageId.touched">
+            Vendor Package harus diisi
+          </p>
+      </ion-item>
+    <ion-item>
       <ion-label>Tanggal</ion-label>
       <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" formControlName="date" required min="{{ dateMin }}" max="{{ dateMax }}"></ion-datetime>
       <p color="danger" class="form-error" *ngIf="form.controls.date.hasError('required') && form.controls.date.touched">
@@ -53,19 +62,31 @@
         </ion-note>
       </ion-item>
       <ion-item>
-          Harga
-            <ion-note item-end>
-              {{ price | currency:"IDR ":true:"0.2" }}
-          </ion-note>
-        </ion-item>
-      <ion-row >
+        Package
+          <ion-note item-end>
+            {{ packageDescription }}
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        Harga
+          <ion-note item-end>
+            {{ price | currency:"IDR ":true:"0.2" }}
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        Discount
+          <ion-note item-end>
+            {{ voucherDiscount | currency:"IDR ":true:"0.2" }}
+        </ion-note>
+      </ion-item>
+    <ion-row >
 
-        <ion-col >
-          <button ion-button block color="primary" icon-start type="submit" [disabled]="!form.valid">
-            <ion-icon name='checkmark-circle'></ion-icon>
-            Save
-          </button>
-        </ion-col>
-      </ion-row>
-    </form>
+      <ion-col >
+        <button ion-button block color="primary" icon-start type="submit" [disabled]="!form.valid">
+          <ion-icon name='checkmark-circle'></ion-icon>
+          Save
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

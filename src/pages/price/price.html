@@ -7,12 +7,41 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Price</ion-title>
+    <ion-title>Price List</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-item no-lines *ngFor="let package of packages">
+    <ion-item>
+      <h2 ion-text item-start color="subtle">{{ package.name }}</h2>
+      <span ion-text item-end color="primary" class="item-bold">{{package.price | currency:"IDR ":true:"0.0" }}</span>
+    </ion-item>
+
+    <ion-card-content class="tdesc">
+      <p>{{ package.description }}</p>
+    </ion-card-content>
+  </ion-item>
+  <!-- <ion-item no-lines>
+    <h2 ion-text item-start color="subtle">600pax</h2>
+    <span ion-text item-end color="primary" class="item-bold">IDR 15.000.000</span>
+  </ion-item>
+
+  <ion-card-content class="tdesc">
+
+    <p>Dapat Makan<br>Dapat Minum</p>
+  </ion-card-content>
+  <ion-item no-lines>
+    <h2 ion-text item-start color="subtle">1000pax</h2>
+    <span ion-text item-end color="primary" class="item-bold">IDR 25.000.000</span>
+  </ion-item>
+
+  <ion-card-content class="tdesc">
+
+    <p>Dapat Makan<br>Dapat Minum</p>
+  </ion-card-content> -->
 
 </ion-content>

@@ -1,0 +1,40 @@
+<!--
+  Generated template for the DetailvendorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar >
+    <ion-title>{{ item.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <img [src]="item.file != null ? fileThumbUrl + item.file : exceptionFileThumbUrl" imageViewer>
+
+  <div ion-item >
+    <ion-title>{{ item.name }}</ion-title>
+  </div>
+
+
+  <ion-card-content class="tdesc">
+
+    <p [innerHTML]="item.description"></p>
+
+  </ion-card-content>
+
+
+  <ion-item class="tsocmed" no-lines>
+    <p>Social Media</p>
+    <button ion-button color="primary" item-end (click)="share()">
+      <ion-icon name='md-share'></ion-icon>
+    </button>
+  </ion-item>
+
+
+
+</ion-content>

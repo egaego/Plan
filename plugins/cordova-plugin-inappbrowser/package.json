@@ -16,12 +16,13 @@
     "fetchSpec": "^2.0.2"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-2.0.2.tgz",
   "_shasum": "a448fcbe974ca6b42988bd3455109d923d6c9769",
   "_spec": "cordova-plugin-inappbrowser@^2.0.2",
-  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
+  "_where": "/Users/hendri/Documents/ionic-project/PYD",
   "author": {
     "name": "Apache Software Foundation"
   },

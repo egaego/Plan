@@ -45,6 +45,14 @@ export class DetailvendorPage {
     this.exceptionFileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/thumbs/default.png';
   }
 
+  goToPricelist() {
+    this.navCtrl.push("PricePage", {item: this.item});
+  }
+
+  goToPromo() {
+    this.navCtrl.push("PromoPage", {item: this.item});
+  }
+
   doAlertcall() {
     this.helpersProvider.callNumber.callNumber(this.item.phone, true)
       .then(() => {

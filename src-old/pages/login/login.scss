@@ -1,0 +1,98 @@
+page-login {
+
+  .btlog{
+    background-color: #FE8985;
+  }
+  .btlog:hover{
+    background-image: linear-gradient(90deg, #FE8985, #FFBEA8);
+  }
+
+  // style for auth pages
+  .auth-page {
+    background-color: #fff;
+    &::after {
+      content: "";
+      background: #f8f8f8;
+      //background: url("../assets/imgs/bg.png") no-repeat;
+      background-size: cover;
+      background-position: center;
+      margin: auto;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .scroll-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //background: rgba(50, 10, 92, .4);
+
+      .login-content {
+        width: 86%;
+
+        .logo {
+          width: 150px;
+          height: 120px;
+          margin: 20px auto 0;
+          border-radius: 10%;
+          background: url("../assets/imgs/logo_pyd.svg") no-repeat;
+          background-size: 100%;
+        }
+
+        .logo-asikah {
+          width: 100px;
+          height: 40px;
+          margin: 20px auto 0;
+          border-radius: 10%;
+          background: url("../assets/imgs/Asikah.pdf") no-repeat;
+          background-size: 100%;
+        }
+
+        .list-form {
+          padding: 0;
+          margin-bottom: 0;
+
+          ion-item {
+            background: none;
+            padding: 0;
+
+            &:first-child {
+              border-top: none;
+            }
+
+            &:after {
+              display: none;
+            }
+
+            ion-label {
+              font-size: 1em;
+              color: #7A7B7D;
+            }
+
+            input {
+              color: #7A7B7D;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // buttons configs
+  .btn-facebook {
+    background-color: #3B5999;
+  }
+
+  .btn-twitter {
+    background-color: #00ACEE;
+  }
+
+  .btn-gplus {
+    background-color: #E04006
+  }
+
+}

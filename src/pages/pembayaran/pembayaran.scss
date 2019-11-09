@@ -5,32 +5,56 @@ page-pembayaran {
   box-shadow: none !important;
   }
 
+  .crincian-actived{
+    border-radius: 10px;
+    box-shadow: none !important;
+    background-color: #FE8985;
+    }
+
  .trincian{
-   height: 80px;
-   background-image: linear-gradient(90deg, #FE8985, #FFBEAB);
-   color: #fff;
+   height: 100px;
+   background-color: #f1f1f1;
+   //background-image: linear-gradient(90deg, #FE8985, #FFBEAB);
+   color: #202020;
    font-weight: bold;
    line-height: 1.5;
  }
 
  .tkonten{
-   color:#FE8985;
+   color:#202020;
    background-color: #fff;
    line-height: 1.5;
  }
  .tsub{
    font-weight: normal;
-   color: #fff;
+   color: #202020;
  }
 
- .ttotal{
-   height: 60px;
-   background-image: linear-gradient(90deg, #FE8985, #FFBEAB);
-   color: #fff;
-   font-weight: bold;
-   text-decoration: none;
-   margin: 0;
+ .timg {
+   width: 8rem;
+   padding-right: 10px;
  }
+
+ .tdes{
+   text-align: center;
+ }
+
+ .tnom{
+   font-weight: bold;
+   background-color: #f1f1f1;
+   border-radius: 2rem;
+   padding: 10px 0px;
+   margin:0px 15%;
+ }
+
+ // .ttotal{
+ //   height: 60px;
+ //   background-image: linear-gradient(90deg, #FE8985, #FFBEAB);
+ //   color: #fff;
+ //   font-weight: bold;
+ //   text-decoration: none;
+ //   margin: 0;
+ // }
 
  .tprint{
  color: #000;

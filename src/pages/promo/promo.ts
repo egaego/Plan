@@ -15,7 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PromoPage {
 
+  item: any;
+  vouchers: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.item = this.navParams.get('item');
+    this.vouchers = this.item.vendor_vouchers;
+    console.log(this.vouchers);
   }
 
   ionViewDidLoad() {

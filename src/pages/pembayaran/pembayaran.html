@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>pembayaran</ion-title>
+    <ion-title>Metode Pembayaran</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,45 +15,26 @@
 
 <ion-content class="bg" >
 
-  <ion-card class="crincian" >
+  <ion-card-content class="tdes">
+    <p>Terima kasih atas Transaksi anda</p>
+    <h1 class="tnom">{{total | currency:"IDR ":true:"0.0" }}</h1>
+    <p>Silahkan lakukan pembayaran sesuai dengan yang tertera diatas</p>
+  </ion-card-content>
+
+  <ion-card [ngClass]="bankId == bank.id ? 'crincian' : 'crincian-actived'"  *ngFor="let bank of banks" (click)="selectedBank(bank.id)">
     <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Decoration
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 2,6jt</ion-badge>
+      <ion-icon name="add-circle-outline" item-start></ion-icon>
+      {{ bank.account_name }}
+      <p class="tsub" ><b>{{ bank.account_number }}</b></p>
+      <p class="tsub" >An. {{ bank.account_holder }}</p>
     </ion-item>
   </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Make Up
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 500k</ion-badge>
-    </ion-item>
+
+<ion-card class="crincian" >
+  <button ion-button icon-start block (click)="doSubmitTransaction()">
+    <div><b>Konfirmasi</b></div>
+  </button>
   </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Photography
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 260k</ion-badge>
-    </ion-item>
-  </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Catering
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 1jt</ion-badge>
-    </ion-item>
-  </ion-card>
-  <ion-card class="crincian" >
-    <ion-item class="trincian" >
-      <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Pra-Wedding
-      <p class="tsub" >Nama Vendor</p>
-      <ion-badge class="tkonten" item-end>IDR 750k</ion-badge>
-    </ion-item>
-  </ion-card>
+
 
 </ion-content>

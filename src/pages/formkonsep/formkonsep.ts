@@ -21,6 +21,7 @@ export class FormkonsepPage {
 
   concepts : any = [];
   vendors : any = [];
+  vendorPackages : any = [];
   fileUrl: string;
   exceptionFileThumbUrl: string;
   loading: any;
@@ -28,9 +29,13 @@ export class FormkonsepPage {
   form: FormGroup;
   conceptId: AbstractControl;
   vendorId: AbstractControl;
+  vendorPackageId: AbstractControl;
   date: AbstractControl;
   address: any;
   price: any;
+  voucher: any;
+  voucherDiscount: any;
+  packageDescription: any;
   dateMin: any;
   dateMax: any;
   
@@ -51,6 +56,7 @@ export class FormkonsepPage {
       this.form = this.formBuilder.group({
         conceptId: [this.conceptId, Validators.compose([Validators.required])],
         vendorId: [this.vendorId, Validators.compose([Validators.required])],
+        vendorPackageId: [this.vendorPackageId, Validators.compose([Validators.required])],
         date: [this.date, Validators.compose([Validators.required])]
       });
       
@@ -94,6 +100,17 @@ export class FormkonsepPage {
     this.vendors.map(item => {
         if (item.id == event) {
           this.address = item.address;
+          this.vendorPackages = item.vendor_packages;
+          this.voucher = item.vendor_active_voucher;
+          this.voucherDiscount = (this.voucher != null) ? this.voucher.discount : 0;
+        }
+    });
+  }
+
+  onVendorPackageFormChanged(event) {
+    this.vendorPackages.map(item => {
+        if (item.id == event) {
+          this.packageDescription = item.description;
           this.price = item.price;
         }
     });
@@ -109,6 +126,10 @@ export class FormkonsepPage {
       "user_id" : localStorage.getItem("user_id"),
       "concept_id" : value.conceptId,
       "vendor_id" : value.vendorId,
+      "vendor_package_id" : value.vendorPackageId,
+      "vendor_voucher_id" : this.voucher.id,
+      "price" : this.price,
+      "discount" : this.voucherDiscount,
       "date" : value.date
     }
 

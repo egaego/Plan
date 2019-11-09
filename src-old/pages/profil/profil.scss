@@ -1,0 +1,154 @@
+page-profil {
+
+  .tavatar{
+    border-radius: 50%;
+    position: absolute;
+    width: 5em;
+    height: 5em;
+    left: 41%;
+    top: 50%;
+  }
+
+  .backgroundAvatar {
+    max-height: 20em;
+  }
+
+  .ticon{
+    position: absolute;
+    width: 100%;
+    right: 5%;
+    text-align: right;
+    top: 7%;
+    font-size: 25px;
+  }
+
+  .tprofile{
+
+    ion-card {
+    position:relative;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    box-shadow: none !important;
+    border-radius: 0;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 80%;
+    font-size: 1.5em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 90%;
+    width: 100%;
+    color: #fff;
+  }
+  h1 {
+    font-family: "Rochester";
+    font-size: 7em;
+  }
+  .tcard{
+    //background-image: linear-gradient(90deg, #FFEDE7, #FFF7F5);
+    background-color: #f8f8f8;
+    display: inline-block;
+    position: relative;
+    margin: 3% 0 0 3%;
+    padding: 1px;
+    border-radius: 10px;
+    width: 94%;
+    align-self: center;
+    box-shadow: none !important;
+    vertical-align: center;
+
+    ion-icon{
+      font-size: 70px;
+    }
+    h1{
+      font-size: 2.0em;
+      line-height: 1.5;
+      color: #3A3A3A;
+    }
+    p{
+      line-height: 1.5;
+    }
+
+  }
+
+  .tname{
+    text-align: center;
+  }
+}
+
+
+  .cbtn{
+    background-color: #FE8985;
+    border-radius: 10px;
+  }
+  .cbtn:hover{
+    background-image: linear-gradient(90deg, #FE8985, #FFBEA8);
+  }
+
+//toolbar css
+  ion-toolbar{
+    width: 80%;
+  }
+
+  .tsearch{
+   width: auto;
+   position: relative;
+   //left: 5%;
+  }
+
+  .tnotif{
+   color: #000;
+   right: 20%;
+   font-size: 100%;
+   position: relative;
+
+  }
+
+  .counting-down-container {
+    background-color: #f8f8f8;
+    padding: 0.8rem;
+    border-radius: 0.7rem;
+    .counting-number {
+      font-size: 3rem;
+      background: url("../assets/imgs/calendar_icon.png") no-repeat;
+      background-size: 100% 100%;
+      height: 6rem;
+      display:flex;
+      justify-content:center;
+      padding-top: 1rem;
+      align-items:center;
+      font-family: "Centaur";
+    }
+    .counting-label {
+      font-size: 1.5rem;
+      font-family: "Centaur";
+    }
+  }
+  
+  .detail-container {
+    background-color: #f8f8f8;
+    padding: 0.8rem;
+    margin-top: 10px;
+    border-radius: 0.7rem;
+    .detail-title {
+      font-size: 3.5rem;
+    }
+    .detail-subtitle {
+      font-size: 2rem;
+      font-family: "Centaur";
+    }
+  }
+}
+
+.popover-content{
+  width: 95% !important;
+}

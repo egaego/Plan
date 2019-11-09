@@ -16,12 +16,13 @@
     "fetchSpec": "2.0.9"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-advanced-http/-/cordova-plugin-advanced-http-2.0.9.tgz",
   "_shasum": "f255aca67a6c4d100115a47e82dae4bbf85c512b",
   "_spec": "cordova-plugin-advanced-http@2.0.9",
-  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
+  "_where": "/Users/hendri/Documents/ionic-project/PYD",
   "author": {
     "name": "Wymsee"
   },

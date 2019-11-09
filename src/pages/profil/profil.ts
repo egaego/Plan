@@ -46,7 +46,7 @@ export class ProfilPage {
   photoUrl: any;
   photoProfileUrl: any;
   backgroundPhoto: any;
-  
+
   days: any = '-';
   hours: any = '-';
   minutes: any = '-';
@@ -57,7 +57,7 @@ export class ProfilPage {
   requiredPage: any = '';
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public file: File,
     private camera: Camera,
     public apiProvider: ApiProvider,
@@ -77,8 +77,8 @@ export class ProfilPage {
     this.getUser();
 
     this.getCountdown();
-    setInterval(() => { 
-      this.getCountdown(); 
+    setInterval(() => {
+      this.getCountdown();
     }, 1000);
   }
 
@@ -86,12 +86,16 @@ export class ProfilPage {
     this.navCtrl.push(this.requiredPage);
   }
 
+  goToHistory(){
+    this.navCtrl.push("HistoryPage");
+  }
+
   getUser() {
     this.apiProvider.get('user/show/' + localStorage.getItem('user_id'), {}, {'Content-Type': 'application/json', "Authorizations": "Bearer " + localStorage.getItem("token")})
       .then((data) => {
         console.log(data);
         let result = JSON.parse(data.data);
-        
+
         if (result.data.relation.venue == null) {
           this.isRequired = true;
           this.requiredLabel = 'Silahkan atur tanggal pernikahan dan tempat pernikahan Anda di menu Edit Profile';
@@ -110,7 +114,7 @@ export class ProfilPage {
         if (result.data.relation.photo != null) {
           this.photo = this.photoUrl + result.data.relation.photo;
         }
-        
+
         this.user = result.data;
 
       })
@@ -123,41 +127,41 @@ export class ProfilPage {
         console.log(error);
       });
   }
-  
+
   openFile() {
     this.camera.getPicture(this.openFileOptions).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      
+
       this.loading = this.helpersProvider.loadingPresent("");
-      
+
       let params = {
         "photo_base64": 'data:image/jpeg;base64,' + imageData
       }
 
       this.apiProvider.post("user/upload-photo/" + localStorage.getItem("user_id"), params, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-          
+
           let result = JSON.parse(data.data);
-          
+
           this.loading.dismiss();
-          
+
           this.photo = this.photoUrl + result.data.relation.photo;
-          
+
           this.helpersProvider.toastPresent(result.message);
-          
+
         })
         .catch((error) => {
           let result = JSON.parse(error.data);
-          
+
           this.loading.dismiss();
           if (result.status == '401') {
             this.events.publish("auth:forceLogout", result.message);
           }
-          
+
           this.helpersProvider.toastPresent(result.message);
         });
-      
+
     }, (err) => {
       // Handle error
         console.log(err);
@@ -167,19 +171,19 @@ export class ProfilPage {
   pad(n) {
     return (n < 10 ? '0' : '') + n;
   }
-  
+
   goToSetting() {
     this.navCtrl.push("SettingPage");
   }
 
   goToFavVendor() {
-    this.navCtrl.push("FavoritevendorPage"); 
+    this.navCtrl.push("FavoritevendorPage");
   }
 
   goToInspiration() {
-    this.navCtrl.push("InspirationPage"); 
+    this.navCtrl.push("InspirationPage");
   }
-  
+
   doUploadPhoto() {
     let actionSheet = this.actionSheetCtrl.create({
       title: name,
@@ -189,7 +193,7 @@ export class ProfilPage {
           role: 'destructive',
           icon: !this.platform.is('ios') ? 'trash' : null,
           handler: () => {
-            
+
             let alert = this.alertCtrl.create({
               title: 'Anda yakin ingin menghapus foto ini?',
               buttons: [
@@ -227,16 +231,16 @@ export class ProfilPage {
     });
     actionSheet.present();
   }
-  
+
   deletePhoto() {
     this.apiProvider.delete("user/delete-photo/" + localStorage.getItem("user_id"), {}, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-          
+
           let result = JSON.parse(data.data);
           this.loading.dismiss();
           this.photo = this.defaultPhoto;
           this.helpersProvider.toastPresent(result.message);
-          
+
         })
         .catch((error) => {
           let result = JSON.parse(error.data);
@@ -246,7 +250,7 @@ export class ProfilPage {
           }
           this.helpersProvider.toastPresent(result.message);
         });
-      
+
   }
 
   goToAccount() {
@@ -265,9 +269,9 @@ export class ProfilPage {
     if (!this.wedding_day) {
       return;
     }
-    
+
     let target_date = null;
-    
+
     if(this.platform.is('ios')) {
       let t = this.wedding_day.split(/[- :]/);
       // Apply each element to the Date function
@@ -275,16 +279,16 @@ export class ProfilPage {
     } else {
       target_date = Date.parse(this.wedding_day + ' 00:00:00'); // set the countdown date
     }
-    
+
     // find the amount of "seconds" between now and target
     let current_date = new Date().getTime();
-    
+
     let seconds_left = (target_date - current_date) / 1000;
-    
+
     if (current_date > target_date) {
       seconds_left = 0;
     }
-    
+
     this.days = this.pad(Math.floor(seconds_left / 86400) );
     seconds_left = seconds_left % 86400;
 
@@ -304,7 +308,7 @@ export class ProfilPage {
           role: 'destructive',
           icon: !this.platform.is('ios') ? 'trash' : null,
           handler: () => {
-            
+
             let alert = this.alertCtrl.create({
               title: 'Anda yakin ingin menghapus foto ini?',
               buttons: [
@@ -342,16 +346,16 @@ export class ProfilPage {
     });
     actionSheet.present();
   }
-  
+
   deletePhotoProfile() {
     this.apiProvider.delete("user/delete-photo-profile/" + localStorage.getItem("user_id"), {}, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-          
+
           let result = JSON.parse(data.data);
           this.loading.dismiss();
           this.photoProfile = this.defaultPhotoProfile;
           this.helpersProvider.toastPresent(result.message);
-          
+
         })
         .catch((error) => {
           let result = JSON.parse(error.data);
@@ -367,36 +371,36 @@ export class ProfilPage {
     this.camera.getPicture(this.openFileOptions).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      
+
       this.loading = this.helpersProvider.loadingPresent("");
-      
+
       let params = {
         "photo_base64": 'data:image/jpeg;base64,' + imageData
       }
 
       this.apiProvider.post("user/upload-photo-profile/" + localStorage.getItem("user_id"), params, {"Content-Type": "application/json", "Authorizations": "Bearer " + localStorage.getItem("token")})
         .then((data) => {
-          
+
           let result = JSON.parse(data.data);
-          
+
           this.loading.dismiss();
-          
+
           this.photoProfile = this.photoProfileUrl + result.data.photo;
-          
+
           this.helpersProvider.toastPresent(result.message);
-          
+
         })
         .catch((error) => {
           let result = JSON.parse(error.data);
-          
+
           this.loading.dismiss();
           if (result.status == '401') {
             this.events.publish("auth:forceLogout", result.message);
           }
-          
+
           this.helpersProvider.toastPresent(result.message);
         });
-      
+
     }, (err) => {
       // Handle error
         console.log(err);

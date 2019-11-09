@@ -15,7 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PricePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  item: any;
+  packages: any;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
+      this.item = this.navParams.get('item');
+      this.packages = this.item.vendor_packages;
+      console.log(this.item);
   }
 
   ionViewDidLoad() {

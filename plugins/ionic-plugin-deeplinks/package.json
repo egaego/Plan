@@ -16,12 +16,13 @@
     "fetchSpec": "^1.0.15"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/ionic-plugin-deeplinks/-/ionic-plugin-deeplinks-1.0.20.tgz",
   "_shasum": "ac5f4f24f81ba6a77e721680bdbd68f0e22a109f",
   "_spec": "ionic-plugin-deeplinks@^1.0.15",
-  "_where": "/Users/bl-ega/Desktop/Project/PYD02/Plan",
+  "_where": "/Users/hendri/Documents/ionic-project/PYD",
   "author": {
     "name": "Max Lynch",
     "email": "max@ionic.io"

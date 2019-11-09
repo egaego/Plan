@@ -1,0 +1,131 @@
+<!--
+  Generated template for the ProfilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+   <ion-toolbar >
+     <ion-title>Profile</ion-title>
+
+     <ion-buttons end>
+       <button (click)="presentNotifications($event)" class="tnotif" color="primary" ion-button icon-only>
+         <ion-icon name="notifications"></ion-icon>
+       </button>
+       <button class="tsetting" tappable (click)="goToAccount()" ion-button icon-only>
+         <ion-icon name="cog"></ion-icon>
+       </button>
+     </ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="tprofile">
+
+  <ion-card>
+    <ion-avatar>
+      <img [src]="photo" class="backgroundAvatar" />
+    </ion-avatar>
+    <div class="ticon">
+      <ion-icon (click)="doUploadPhoto()" name="reverse-camera"></ion-icon>
+    </div>
+    <div>
+      <ion-avatar>
+        <img class="tavatar" (click)="doUploadPhotoProfile()" [src]="photoProfile">
+      </ion-avatar>
+    </div>
+    <div class="card-title">{{ user.name }}</div>
+    <div class="card-subtitle">{{ venue }}</div>
+  </ion-card>
+
+  <div class="">
+    <ion-row>
+
+      <ion-col>
+        <button class="cbtn" ion-button icon-start block (click)="goToFavVendor()">
+          <ion-icon name="bookmark"></ion-icon>
+          <div>My Fav Vendor</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button class="cbtn" ion-button icon-start block (click)="goToInspiration()">
+          <ion-icon name="heart"></ion-icon>
+          <div>Inspiration</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-card class="tcard" >
+    <ion-row class="counting-down-container">
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ days }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Hari
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ hours }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Jam
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ minutes }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Menit
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <ion-row>
+          <ion-col col-12 class="counting-number">
+            {{ seconds }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="counting-label">
+            Detik
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="alert-container" *ngIf="isRequired" (click)="onClickRequiredLabel()">
+      <ion-col col-12 class="detail-subtitle" text-center>
+        {{ requiredLabel }}
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <ion-card class="tcard" >
+  <ion-card-header >
+    <h1>{{ user.name }}</h1>
+    <ion-icon name="heart-outline"></ion-icon>
+    <h1>{{ relation_name }}</h1>
+    <p>{{ wedding_day }}</p>
+    <p>{{ venue }}</p>
+  </ion-card-header>
+</ion-card>
+
+
+
+</ion-content>

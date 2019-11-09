@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>promo</ion-title>
+    <ion-title>Promo!</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+
+  <ion-card class="mapi" *ngFor="let voucher of vouchers">
+
+    <img src="https://trello-attachments.s3.amazonaws.com/5daf10767e06b552a0de031f/500x200/80d3ae84f36d61dec71146bb9751692c/promo.png"/>
+
+    <ion-card-content class="desk">
+      <ion-card-title >
+        {{ voucher.name }}
+      </ion-card-title>
+      <h1 class="tnom">{{voucher.discount | currency:"IDR ":true:"0.0" }}</h1>
+      <p>
+        Berlaku pada {{ voucher.start_date }} sampai {{ voucher.end_date }}
+      </p>
+    </ion-card-content>
+
+  </ion-card>
 
 </ion-content>

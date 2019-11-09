@@ -42,12 +42,16 @@ import org.json.JSONObject;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.onesignal.OneSignal;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenResult;
+import com.onesignal.OSInAppMessageAction;
 import com.onesignal.OneSignal.NotificationOpenedHandler;
 import com.onesignal.OneSignal.NotificationReceivedHandler;
+import com.onesignal.OneSignal.InAppMessageClickHandler;
 import com.onesignal.OneSignal.GetTagsHandler;
 import com.onesignal.OneSignal.IdsAvailableHandler;
 import com.onesignal.OneSignal.PostNotificationResponseHandler;
@@ -66,6 +70,7 @@ public class OneSignalPush extends CordovaPlugin {
   
   private static final String SET_NOTIFICATION_RECEIVED_HANDLER = "setNotificationReceivedHandler";
   private static final String SET_NOTIFICATION_OPENED_HANDLER = "setNotificationOpenedHandler";
+  private static final String SET_IN_APP_MESSAGE_CLICK_HANDLER = "setInAppMessageClickHandler";
   private static final String INIT = "init";
   
   private static final String SET_IN_FOCUS_DISPLAYING = "setInFocusDisplaying";
@@ -105,9 +110,15 @@ public class OneSignalPush extends CordovaPlugin {
 
   private static final String SET_EXTERNAL_USER_ID = "setExternalUserId";
   private static final String REMOVE_EXTERNAL_USER_ID = "removeExternalUserId";
+
+  private static final String ADD_TRIGGERS = "addTriggers";
+  private static final String REMOVE_TRIGGERS_FOR_KEYS = "removeTriggersForKeys";
+  private static final String GET_TRIGGER_VALUE_FOR_KEY = "getTriggerValueForKey";
+  private static final String PAUSE_IN_APP_MESSAGES = "pauseInAppMessages";
   
   private static CallbackContext notifReceivedCallbackContext;
   private static CallbackContext notifOpenedCallbackContext;
+  private static CallbackContext inAppMessageClickedCallbackContext;
   
   private static CallbackContext jsPermissionObserverCallBack;
   private static CallbackContext jsSubscriptionObserverCallBack;
@@ -160,6 +171,10 @@ public class OneSignalPush extends CordovaPlugin {
       notifOpenedCallbackContext = callbackContext;
       result = true;
     }
+    else if(SET_IN_APP_MESSAGE_CLICK_HANDLER.equals(action)) {
+       inAppMessageClickedCallbackContext = callbackContext;
+       result = true; 
+    }
     else if (INIT.equals(action)) {
       try {
         String appId = data.getString(0);
@@ -169,6 +184,7 @@ public class OneSignalPush extends CordovaPlugin {
         OneSignal.Builder builder = OneSignal.getCurrentOrNewInitBuilder();
         builder.unsubscribeWhenNotificationsAreDisabled(true);
         builder.filterOtherGCMReceivers(true);
+        builder.setInAppMessageClickHandler(new CordovaInAppMessageClickHandler(inAppMessageClickedCallbackContext));
         
         OneSignal.init(this.cordova.getActivity(),
                   googleProjectNumber,
@@ -487,8 +503,43 @@ public class OneSignalPush extends CordovaPlugin {
       catch(Throwable t) {
         t.printStackTrace();
       }
-    }
-    else {
+    } else if (ADD_TRIGGERS.equals(action)) {
+      try {
+        OneSignal.addTriggersFromJsonString(data.getJSONObject(0).toString());
+        result = true;
+      } catch (JSONException e){
+        e.printStackTrace();
+      } 
+    } else if (REMOVE_TRIGGERS_FOR_KEYS.equals(action)) {
+      try{
+          OneSignal.removeTriggersForKeysFromJsonArrayString(data.getString(0));
+          result = true;
+      } catch (JSONException e){
+        e.printStackTrace();
+      } 
+    } else if (GET_TRIGGER_VALUE_FOR_KEY.equals(action)) {
+      try {
+        Object value = OneSignal.getTriggerValueForKey(data.getString(0));
+        if (value == null) {
+          callbackSuccess(callbackContext, new JSONObject());
+        } else {
+          callbackSuccess(callbackContext, new JSONObject(
+            "{value:"
+            + value.toString()
+            + "}"));
+        }
+        result = true;
+      } catch (JSONException e){
+        e.printStackTrace();
+      }
+    } else if (PAUSE_IN_APP_MESSAGES.equals(action)) {
+      try {
+        OneSignal.pauseInAppMessages(data.getBoolean(0));
+        result = true;
+      } catch (JSONException e){
+        e.printStackTrace();
+      }
+    } else {
       result = false;
       Log.e(TAG, "Invalid action : " + action);
       callbackError(callbackContext, "Invalid action : " + action);
@@ -534,7 +585,27 @@ public class OneSignalPush extends CordovaPlugin {
       }
     }
   }
-  
+
+  private class CordovaInAppMessageClickHandler implements InAppMessageClickHandler {
+
+    private CallbackContext jsInAppMessageClickedCallback;
+
+    public CordovaInAppMessageClickHandler(CallbackContext inCallbackContext) {
+      jsInAppMessageClickedCallback = inCallbackContext;
+    }
+
+    @Override
+    public void inAppMessageClicked(OSInAppMessageAction result) {      
+      try {
+        callbackSuccess(jsInAppMessageClickedCallback, result.toJSONObject());
+      }
+      catch (Throwable t) {
+        t.printStackTrace();
+      }
+    }
+
+  }
+
   @Override
   public void onDestroy() {
     OneSignal.removeNotificationOpenedHandler();

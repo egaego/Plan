@@ -1,0 +1,41 @@
+page-gallery {
+
+  .pins {
+    column-count: 2;
+
+    .ipav{
+      position: absolute;
+      top: 5%;
+      font-size: 1.0em;
+      width: 100%;
+      color: #fff;
+    }
+  }
+
+  .pin {
+    position: relative;
+    display: inline-block;
+    margin: 0 1px 10px;
+    padding: 1px;
+    border-radius: 30px;
+
+
+  }
+
+  .pin img {
+    border-radius: 8px;
+  }
+
+  .pin i {
+    position: absolute;
+  top: calc(20px - 10px);
+  left: calc(85% - 5px);
+    font-size: 1.3em;
+    color: #fff;
+  }
+
+  .segment{
+    padding-bottom: 15px;
+  }
+
+}

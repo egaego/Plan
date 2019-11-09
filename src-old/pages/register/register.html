@@ -1,0 +1,90 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding text-center>
+      <div class="logo-register"></div>
+      <p ion-text class="text-gold">
+        Rencanakan Momentmu!
+      </p>
+    </div>
+
+    <!-- Register form -->
+    <form class="list-form" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+      <ion-row>
+        <ion-col>
+          <ion-item [ngClass]="{'error-border':!registerForm.controls.name.valid && registerForm.controls.name.touched}">
+            <ion-label floating>
+              <ion-icon name="person" item-start class="text-pink"></ion-icon>
+              Full Name
+            </ion-label>
+            <ion-input formControlName="name" type="text" required></ion-input>
+          </ion-item>
+          <ion-item color="danger" class="form-error" *ngIf="registerForm.controls.name.hasError('required') && registerForm.controls.name.touched">
+            <p>Nama harus diisi</p>
+          </ion-item>
+
+          <ion-item [ngClass]="{'error-border':!registerForm.controls.email.valid && registerForm.controls.email.touched}">
+            <ion-label floating>
+              <ion-icon name="mail" item-start class="text-pink"></ion-icon>
+              Email
+            </ion-label>
+            <ion-input formControlName="email" type="email" required ></ion-input>
+          </ion-item>
+          <ion-item color="danger" class="form-error" *ngIf="registerForm.controls.email.hasError('required') && registerForm.controls.email.touched">
+            <p>Email harus diisi</p>
+          </ion-item>
+          <ion-item color="danger" class="form-error" *ngIf="registerForm.controls.email.hasError('email') && registerForm.controls.email.touched">
+            <p>Format email tidak valid</p>
+          </ion-item>
+
+          <ion-item [ngClass]="{'error-border':!registerForm.controls.password.valid && registerForm.controls.password.touched}">
+            <ion-label floating>
+              <ion-icon name="lock" item-start class="text-pink"></ion-icon>
+              Password
+            </ion-label>
+            <ion-input formControlName="password" type="password" required show-password></ion-input>
+          </ion-item>
+          <ion-item color="danger" class="form-error" *ngIf="registerForm.controls.password.hasError('required') && registerForm.controls.password.touched">
+            <p>Password harus diisi</p>
+          </ion-item>
+
+          <ion-item [ngClass]="{'error-border':!registerForm.controls.confirm_password.valid && registerForm.controls.confirm_password.touched}">
+            <ion-label floating>
+              <ion-icon name="lock" item-start class="text-pink"></ion-icon>
+              Confirm Password
+            </ion-label>
+            <ion-input formControlName="confirm_password" type="password" required show-password></ion-input>
+          </ion-item>
+          <ion-item color="danger" class="form-error" *ngIf="registerForm.controls.confirm_password.hasError('required') && registerForm.controls.confirm_password.touched">
+            <p>Konfirmasi Password harus diisi</p>
+          </ion-item>
+          <ion-item color="danger" *ngIf="registerForm.controls.confirm_password.touched && registerForm.hasError('mismatchedPasswords') && registerForm.controls.password.valid">
+            <ion-label no-margin stacked>Passwords do not match</ion-label>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+
+      <div margin-top>
+        <button class="btreg" ion-button icon-start block tappable type="submit" [disabled]="!registerForm.valid">
+          <ion-icon name="log-in"></ion-icon>
+          SIGN UP
+        </button>
+      </div>
+    </form>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="warnalink" (click)="login()">I have an account</span>
+    </div>
+
+  </div>
+</ion-content>
