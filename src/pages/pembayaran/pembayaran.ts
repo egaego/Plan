@@ -67,6 +67,11 @@ export class PembayaranPage {
   }
 
   doSubmitTransaction() {
+    if (this.bankId == null) {
+      this.helpersProvider.toastPresent("Bank belum di pilih");
+      return;
+    }
+
     this.loading = this.helpersProvider.loadingPresent("Please Wait ...");
     let params = {
       "user_id" : localStorage.getItem("user_id"),

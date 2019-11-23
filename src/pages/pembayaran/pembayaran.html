@@ -21,14 +21,20 @@
     <p>Silahkan lakukan pembayaran sesuai dengan yang tertera diatas</p>
   </ion-card-content>
 
-  <ion-card [ngClass]="bankId == bank.id ? 'crincian' : 'crincian-actived'"  *ngFor="let bank of banks" (click)="selectedBank(bank.id)">
-    <ion-item class="trincian" >
-      <ion-icon name="add-circle-outline" item-start></ion-icon>
-      {{ bank.account_name }}
-      <p class="tsub" ><b>{{ bank.account_number }}</b></p>
-      <p class="tsub" >An. {{ bank.account_holder }}</p>
-    </ion-item>
-  </ion-card>
+  <ion-list radio-group>
+    <!-- <ion-card [ngClass]="bankId == bank.id ? 'crincian' : 'crincian-actived'"  *ngFor="let bank of banks" (click)="selectedBank(bank.id)"> -->
+      <ion-item class="trincian" *ngFor="let bank of banks">
+        <ion-label>
+          <ion-card [ngClass]="bankId == bank.id ? 'crincian' : 'crincian'">
+            {{ bank.account_name }}
+            <p class="tsub" ><b>{{ bank.account_number }}</b></p>
+            <p class="tsub" >An. {{ bank.account_holder }}</p>    
+          </ion-card>
+        </ion-label>
+        <ion-radio [value]="bank.id" (ionSelect)="selectedBank(bank.id)"></ion-radio>
+      </ion-item>
+    <!-- </ion-card> -->
+  </ion-list>
 
 <ion-card class="crincian" >
   <button ion-button icon-start block (click)="doSubmitTransaction()">

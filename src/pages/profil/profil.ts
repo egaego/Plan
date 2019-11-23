@@ -265,6 +265,10 @@ export class ProfilPage {
     });
   }
 
+  openWa() {
+    window.open('https://api.whatsapp.com/send?phone=+6287882408009', '_system');
+  }
+
   getCountdown() {
     if (!this.wedding_day) {
       return;
