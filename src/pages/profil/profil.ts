@@ -86,8 +86,8 @@ export class ProfilPage {
     this.navCtrl.push(this.requiredPage);
   }
 
-  goToHistory(){
-    this.navCtrl.push("HistoryPage");
+  goTofeedback(){
+    this.navCtrl.push("FeedbackPage");
   }
 
   getUser() {

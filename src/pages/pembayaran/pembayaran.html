@@ -28,7 +28,7 @@
           <ion-card [ngClass]="bankId == bank.id ? 'crincian' : 'crincian'">
             {{ bank.account_name }}
             <p class="tsub" ><b>{{ bank.account_number }}</b></p>
-            <p class="tsub" >An. {{ bank.account_holder }}</p>    
+            <p class="tsub" >An. {{ bank.account_holder }}</p>
           </ion-card>
         </ion-label>
         <ion-radio [value]="bank.id" (ionSelect)="selectedBank(bank.id)"></ion-radio>
@@ -38,7 +38,7 @@
 
 <ion-card class="crincian" >
   <button ion-button icon-start block (click)="doSubmitTransaction()">
-    <div><b>Konfirmasi</b></div>
+    <div><b>Checkout</b></div>
   </button>
   </ion-card>
 

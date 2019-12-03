@@ -1,0 +1,34 @@
+page-feedback {
+
+  ion-card {
+    margin-bottom: 2em;
+  }
+
+  ion-card-content {
+    background-color: #F4F5F8;
+  }
+
+  ion-card img {
+    width: auto;
+    height: 44px;
+    display: block;
+    margin: 20px auto;
+  }
+
+  .ionstar{
+    vertical-align: center;
+    align-self: center;
+    text-align: center;
+    font-size: 2.5em;
+  }
+
+  .komen{
+    padding-bottom: 50px;
+    text-align: justify;
+  }
+
+  textarea {
+    min-height: 10rem;
+  }
+
+}
