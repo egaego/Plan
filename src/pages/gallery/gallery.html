@@ -17,14 +17,8 @@
 
   <div no-border-top>
       <ion-segment [(ngModel)]="pet">
-        <ion-segment-button value="puppies">
-          Decoration
-        </ion-segment-button>
-        <ion-segment-button value="kittens">
-          Photography
-        </ion-segment-button>
-        <ion-segment-button value="ducklings">
-          Catering
+        <ion-segment-button [value]="item.name" *ngFor="let item of categories" (click)="refreshCategory(item)">
+          {{item.name}}
         </ion-segment-button>
       </ion-segment>
     </div>

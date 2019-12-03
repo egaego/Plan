@@ -18,6 +18,7 @@ import { ApiProvider } from '../../providers/api/api';
 export class GalleryPage {
 
   galleries: any = [];
+  categories: any = [];
   fileThumbUrl: string;
   fileUrl: string;
   exceptionFileThumbUrl: string;
@@ -36,6 +37,7 @@ export class GalleryPage {
     this.exceptionFileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/thumbs/default.png';
 
     this.getGalleries();
+    this.getCategories();
   }
 
   ionViewDidLoad() {
@@ -112,8 +114,47 @@ export class GalleryPage {
       });
   }
 
+  getCategories() {
+    this.apiProvider.get('gallery/categories?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
+      .then((data) => {
+        let result = JSON.parse(data.data);
+        console.log(result);
+        for(var o=0; o<result.data.length; o++) {
+          console.log(result.data[o].gallery);
+        }
+        
+        this.categories = result.data;
+
+      })
+      .catch((error) => {
+        let result = JSON.parse(error.error);
+        this.helpersProvider.toastPresent(result.message);
+        console.log(error);
+      });
+  }
+
+  refreshCategory(item) {
+    this.apiProvider.get('gallery/?concept_id='+item.id+'token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
+      .then((data) => {
+        let result = JSON.parse(data.data);
+        console.log(result);
+        for(var o=0; o<result.data.length; o++) {
+          console.log(result.data[o].gallery);
+        }
+        
+        this.galleries = result.data;
+
+      })
+      .catch((error) => {
+        let result = JSON.parse(error.error);
+        this.helpersProvider.toastPresent(result.message);
+        console.log(error);
+      });
+  }
+
   doRefresh(e) {
     this.getGalleries();
+    this.getCategories();
     setTimeout(() => {
       console.log('Async operation has ended');
       e.complete();
