@@ -14,14 +14,22 @@
 
 
 <ion-content >
-
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
   <ion-card class="crincian" *ngFor="let model of models" (click)="toDetail(model)">
     <ion-item class="trincian" >
       <!-- <ion-icon name="add-circle-outline" item-start></ion-icon> -->
       <p class="tsub" ><b>Code: {{model.code}}</b></p>
       <p class="tsub" >{{model.updated_at}}</p>
       <p class="tsub" >{{ model.grand_total | currency:"IDR ":true:"0.0" }}</p>
-      <h2 item-end [ngClass]="getClass(model)">{{ getStatus(model) }}</h2>
+      <div item-end>
+          <h2 [ngClass]="getClass(model)">{{ getStatus(model) }}</h2>
+          <button *ngIf="model.status == '5'" class="tkontenn" (click)="confirmation(model)" ion-button icon-start outline>
+            <ion-icon name="cart"></ion-icon>
+            <div>KONFIRMASI</div>
+          </button>
+      </div>
     </ion-item>
   </ion-card>
 

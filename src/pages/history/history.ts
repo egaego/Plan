@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { HelpersProvider } from '../../providers/helpers/helpers';
 import { ApiProvider } from '../../providers/api/api';
+import { InAppBrowserOptions } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the HistoryPage page.
@@ -24,6 +25,11 @@ export class HistoryPage {
   fileUrl: string;
   exceptionFileThumbUrl: string;
   loading: any;
+
+  browserOptions: InAppBrowserOptions = {
+    zoom: 'yes',
+    toolbar: 'yes'
+  }
   
   constructor(
     public navParams: NavParams,
@@ -116,4 +122,7 @@ export class HistoryPage {
 
   }
 
+  confirmation(model) {
+    this.helpersProvider.inAppBrowser.create(model.confirmation_link, '_blank', this.browserOptions);
+  }
 }

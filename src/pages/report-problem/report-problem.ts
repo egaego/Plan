@@ -47,7 +47,7 @@ export class ReportProblemPage {
       
       let params = {"category": value.category, "description": value.description};
       
-      this.api.post('report-problem', params, {'Content-Type':'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token')})
+      this.api.post('report-problem?token'+localStorage.getItem('token'), params, {'Content-Type':'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
         .then((data) => {
           
           let result = JSON.parse(data.data);

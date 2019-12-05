@@ -41,6 +41,9 @@
 
 <ion-footer>
     <ion-item no-lines class="ttotal" item-start >
+      Fee   :
+      <ion-badge class="tkonten" >{{adminFee | currency:"IDR ":true:"0.0" }}</ion-badge>
+      <br/>
       Total :
       <ion-badge class="tkonten" >{{total | currency:"IDR ":true:"0.2" }}</ion-badge>
       <button class="tkontenn" (click)="goToPembayaran()" ion-button item-end icon-start outline>

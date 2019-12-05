@@ -24,6 +24,7 @@ export class RincianPage {
   exceptionFileThumbUrl: string;
   loading: any;
   total: any = 0;
+  adminFee: any = 0;
   trxId: any = 0;
 
   constructor(
@@ -46,11 +47,13 @@ export class RincianPage {
     this.apiProvider.get('concept-detail/?token='+localStorage.getItem('token'), {}, {'Content-Type': 'application/json', 'Authorizations': 'Bearer ' + localStorage.getItem('token')})
       .then((data) => {
         let result = JSON.parse(data.data);
+        console.log(data);
 
         this.concepts = result.data;
         this.defaultConcepts = result.data;
         this.total = result.total;
         this.trxId = result.transaction_id;
+        this.adminFee = result.admin_fee;
 
       })
       .catch((error) => {
