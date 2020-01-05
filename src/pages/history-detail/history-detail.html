@@ -14,13 +14,13 @@
 
 
 <ion-content padding>
-  <ion-card class="crincian" *ngFor="let item of item.transaction_details">
+  <ion-card class="crincian" *ngFor="let ite of item.transaction_details">
     <ion-item class="trincian" >
       <!-- <ion-icon name="add-circle-outline" item-start></ion-icon> -->
-      {{item.vendor.name}}
-      <p class="tsub" ><b>{{ item.vendor_package.name }}</b></p>
-      <p class="tsub" >{{ item.grand_total | currency:"IDR ":true:"0.0" }}</p>
-      <button class="tprint" ion-button icon-only (click)="ratingPage(item)">
+      {{ite.vendor.name}}
+      <p class="tsub" ><b>{{ ite.vendor_package.name }}</b></p>
+      <p class="tsub" >{{ ite.grand_total | currency:"IDR ":true:"0.0" }}</p>
+      <button class="tprint" ion-button icon-only (click)="ratingPage(ite)" *ngIf="item.status == 10">
         <ion-icon name="star" color="white"></ion-icon>
         Beri Rating  
       </button>
