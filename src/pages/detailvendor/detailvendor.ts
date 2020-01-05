@@ -23,6 +23,7 @@ export class DetailvendorPage {
   item: any;
   fileThumbUrl: string;
   fileUrl: string;
+  fileDetailUrl: string;
   exceptionFileThumbUrl: string;
   loading: any;
   browserOptions: InAppBrowserOptions = {
@@ -42,7 +43,10 @@ export class DetailvendorPage {
     this.item = this.navParams.get('item');
     this.fileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/vendors/thumbs/';
     this.fileUrl = this.helpersProvider.getBaseUrl() + 'files/vendors/';
+    this.fileDetailUrl = this.helpersProvider.getBaseUrl() + 'files/vendor-details/';
     this.exceptionFileThumbUrl = this.helpersProvider.getBaseUrl() + 'files/galleries/thumbs/default.png';
+
+    console.log(this.item);
   }
 
   goToPricelist() {
@@ -132,6 +136,10 @@ export class DetailvendorPage {
     }
 
     this.item.is_favorite = !this.item.is_favorite;
+  }
+
+  showPicture(name, url) {
+    this.helpersProvider.photoViewer.show(url, name);
   }
 
 }

@@ -14,7 +14,14 @@
 
 
 <ion-content>
-  <img [src]="item.file != null ? fileThumbUrl + item.file : exceptionFileThumbUrl" imageViewer>
+  <ion-slides class="vendor-slides" pager="true">
+    <ion-slide>
+      <img src="{{ item.file != null ? fileThumbUrl + item.file : exceptionFileThumbUrl }}" class="slide-image" (click)="showPicture(item.name, item.file != null ? fileThumbUrl + item.file : exceptionFileThumbUrl)" />
+    </ion-slide>
+    <ion-slide *ngFor="let ite of item.vendor_details">
+      <img src="{{ ite.file != null ? fileDetailUrl + ite.file : exceptionFileThumbUrl }}" class="slide-image" (click)="showPicture(ite.name, ite.file != null ? fileDetailUrl + ite.file : exceptionFileThumbUrl)" />
+    </ion-slide>
+  </ion-slides>
 
   <div ion-item no-lines>
     <ion-avatar item-start>
@@ -28,6 +35,7 @@
     <button (click)="favorite(item)" ion-button color="primary" *ngIf="item.is_favorite == 0" outline item-end >
       <ion-icon name='heart'></ion-icon>
     </button>
+    <span ion-text item-end ><ion-icon small color="primary" name='star'></ion-icon> {{ item.rating }}</span>
   </div>
 
   <ion-row class="tcont">

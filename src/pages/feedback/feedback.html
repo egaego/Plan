@@ -16,37 +16,33 @@
 <ion-content padding class="buttons-components-page">
   <ion-card>
     <ion-card-content>
-      <img src="assets/img/img-icon.png" />
+      <img src="{{ vendorItem.vendor.file != null ? fileThumbUrl + vendorItem.vendor.file : exceptionFileThumbUrl }}" />
     </ion-card-content>
 
-    <ion-item >
-      Nama Vendor
+    <ion-item>
+      {{ vendorItem.vendor.name }}
       <ion-icon item-end small color="primary" name='star'></ion-icon>
-      <ion-icon item-end small color="primary" name='star'></ion-icon>
-      <ion-icon item-end small color="primary" name='star'></ion-icon>
-      <ion-icon item-end small color="primary" name='star'></ion-icon>
-      <ion-icon item-end small color="primary" isActive="false" name='star'></ion-icon>
-      <div item-end  >5.4</div>
+      <div item-end  >{{ vendorItem.vendor.rating }}</div>
     </ion-item>
   </ion-card>
 
-  <ion-list>
-    <ion-item class="ionstar" >
-      <ion-icon color="primary" name='star-outline'></ion-icon>
-      <ion-icon large color="primary" name='star-outline'></ion-icon>
-      <ion-icon large color="primary" name='star-outline'></ion-icon>
-      <ion-icon large color="primary" name='star-outline'></ion-icon>
-      <ion-icon large color="primary" isActive="false" name='star'></ion-icon>
-    </ion-item>
+<ion-list>
+  <ion-item class="ionstar" >
+    <ion-icon color="primary" [name]='star1' (click)="rating(1)"></ion-icon>
+    <ion-icon large color="primary" [name]='star2' (click)="rating(2)"></ion-icon>
+    <ion-icon large color="primary" [name]='star3' (click)="rating(3)"></ion-icon>
+    <ion-icon large color="primary" [name]='star4' (click)="rating(4)"></ion-icon>
+    <ion-icon large color="primary" [name]='star5' (click)="rating(5)"></ion-icon>
+  </ion-item>
 
     <ion-item >
       <ion-label class="deskripsi" floating>Deskripsi</ion-label>
-      <ion-textarea></ion-textarea>
+      <ion-textarea [(ngModel)]="description" name="description"></ion-textarea>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <button ion-button color="primary" round full type="submit" >KIRIM</button>
+        <button (click)="submit()" ion-button color="primary" round full type="submit" >KIRIM</button>
       </ion-col>
     </ion-row>
 

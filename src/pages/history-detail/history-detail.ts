@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HelpersProvider } from '../../providers/helpers/helpers';
 
 /**
  * Generated class for the HistoryDetailPage page.
@@ -16,12 +17,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class HistoryDetailPage {
 
   item: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public helpersProvider: HelpersProvider) {
     this.item = this.navParams.get('item');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistoryDetailPage');
+  }
+
+  ratingPage(vendorItem: any) {
+    if (vendorItem.is_rating == 1) {
+      this.navCtrl.push("FeedbackPage", {item: this.item, vendorItem: vendorItem});
+      return;
+    }
+    this.helpersProvider.toastPresent("Anda sudah melakukan penilaian");
+    
   }
 
 }

@@ -33,6 +33,7 @@
     <ion-item actions>
       <span ion-text item-start color="subtle">Mulai dari :</span>
       <span ion-text item-start color="primary" class="item-bold">{{vendor.price | currency:"IDR ":true:"0.0" }}</span>
+      <span ion-text item-end ><ion-icon small color="primary" name="star"></ion-icon> {{ vendor.rating }}</span>
       <button (click)="favorite(vendor)" ion-button color="danger" *ngIf="vendor.is_favorite == 1" item-end >
         <ion-icon name='heart'></ion-icon>
       </button>
