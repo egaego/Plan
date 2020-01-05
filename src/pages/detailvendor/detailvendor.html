@@ -35,7 +35,6 @@
     <button (click)="favorite(item)" ion-button color="primary" *ngIf="item.is_favorite == 0" outline item-end >
       <ion-icon name='heart'></ion-icon>
     </button>
-    <span ion-text item-end ><ion-icon small color="primary" name='star'></ion-icon> {{ item.rating }}</span>
   </div>
 
   <ion-row class="tcont">
@@ -63,7 +62,7 @@
     <h2 ion-text item-start color="subtle">Mulai dari :</h2>
     <span ion-text color="primary" class="item-bold">{{ item.price | currency:"IDR ":true:"0.0"  }}</span>
     <ion-icon item-end small color="primary" name='star'></ion-icon>
-    <div item-end  >9.4</div>
+    <div item-end  >{{ item.rating }}</div>
   </ion-item>
 
   <ion-card-content class="tdesc">
