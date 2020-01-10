@@ -127,7 +127,7 @@ export class FormkonsepPage {
       "concept_id" : value.conceptId,
       "vendor_id" : value.vendorId,
       "vendor_package_id" : value.vendorPackageId,
-      "vendor_voucher_id" : this.voucher.id,
+      "vendor_voucher_id" : (this.voucher == null) ? null : this.voucher.id,
       "price" : this.price,
       "discount" : this.voucherDiscount,
       "date" : value.date
